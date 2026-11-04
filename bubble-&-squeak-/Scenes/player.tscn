@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn60vt6u4pnmg"]
+[gd_scene format=3 uid="uid://bn60vt6u4pnmg"]
 
 [ext_resource type="Texture2D" uid="uid://br42xp6v8fxfy" path="res://sprites/Aster_SpriteSheet.png" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://dv3jaeusa0s0m" path="res://Scenes/movement.gd" id="2_move"]
@@ -16,18 +16,33 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6t5aa")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf24m"]
+size = Vector2(33, 20)
+
+[node name="Player" type="CharacterBody2D" unique_id=1598689064]
+disable_mode = 2
+collision_mask = 2
 script = ExtResource("2_move")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1744987629]
 position = Vector2(-1.5, 2.5)
 shape = SubResource("RectangleShape2D_cvnsp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=104380371]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vgqql")
+
+[node name="GrabZone" type="Area2D" parent="." unique_id=1531499303]
+scale = Vector2(1, 1.1999999)
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabZone" unique_id=141162561]
+position = Vector2(-1.5, 0)
+scale = Vector2(1.9199997, 2.024477)
+shape = SubResource("RectangleShape2D_gf24m")
