@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cj52hkydpsobs"]
+
+[ext_resource type="Script" uid="uid://qunyajea5a1j" path="res://Scripts/rock.gd" id="1_lgx4v"]
+
+[node name="Rock" type="RigidBody2D" unique_id=72182699]
+script = ExtResource("1_lgx4v")

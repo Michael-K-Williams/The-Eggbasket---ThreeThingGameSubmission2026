@@ -8,6 +8,10 @@ extends RigidBody2D
 var grabbed_by: Node2D = null
 var _offset_x: float = 0.0
 
+@export var wind_response: float = 0.5  
+
+func apply_wind(direction: Vector2, strength: float) -> void:
+	apply_central_force(direction * strength * wind_response * mass)
 
 func _ready() -> void:
 	lock_rotation = true
