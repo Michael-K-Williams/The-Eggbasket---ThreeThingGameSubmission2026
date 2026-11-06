@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dnq5fnhmdenjq" path="res://Scripts/cave_exit.gd" id="1_x7wuy"]
 
-[node name="ArrivalCave" type="Area2D" unique_id=1347216435]
+[node name="ArrivalCave" type="Node2D" unique_id=563540888]
 script = ExtResource("1_x7wuy")

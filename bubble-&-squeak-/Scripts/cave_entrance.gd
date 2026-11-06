@@ -9,12 +9,12 @@ const ORB_COLORS := {
 @export_file("*.tscn") var next_level_path: String = ""
 @export var size := Vector2(64, 80)        
 @export var require_all_players: bool = true
-@export var fade_time: float = 0.6
-@export var beat_before_fade: float = 0.6  
+@export var fade_time: float = 0.25
+@export var beat_before_fade: float = 0.4
 @export var orb_radius: float = 9.0
 @export var orb_spacing: float = 26.0
 @export var orb_height: float = 24.0       
-
+@export var players_required: int = 2
 var _nearby: Array[Yeti] = []  
 var _inside: Array[Yeti] = []   
 var _transitioning := false
@@ -51,17 +51,22 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	_time += delta
-	queue_redraw()   
+	queue_redraw()  
 	if _transitioning:
 		return
 
-	for yeti in _nearby.duplicate():
-		if not _inside.has(yeti) and Input.is_action_just_pressed("p%d_up" % yeti.player_id):
-			_enter(yeti)
 
 	for yeti in _inside.duplicate():
-		if Input.is_action_just_pressed("p%d_down" % yeti.player_id):
+		if Input.is_action_just_pressed("p%d_interact" % yeti.player_id):
 			_leave(yeti)
+
+
+	for yeti in _nearby.duplicate():
+		if _inside.has(yeti) or _just_left.has(yeti):
+			continue
+		if Input.is_action_just_pressed("p%d_interact" % yeti.player_id):
+			_enter(yeti)
+	_just_left.clear()
 
 
 func _enter(yeti: Yeti) -> void:
@@ -70,8 +75,11 @@ func _enter(yeti: Yeti) -> void:
 	_check_ready()
 
 
+var _just_left: Array[Yeti] = []
+
 func _leave(yeti: Yeti) -> void:
 	_inside.erase(yeti)
+	_just_left.append(yeti)
 	var ext := yeti._body_extents()
 	yeti.leave_cave(global_position + Vector2(0.0, size.y / 2.0 - ext.y))
 
@@ -79,7 +87,7 @@ func _leave(yeti: Yeti) -> void:
 func _check_ready() -> void:
 	var needed := 1
 	if require_all_players:
-		needed = get_tree().get_nodes_in_group("players").size()
+		needed = maxi(players_required, get_tree().get_nodes_in_group("players").size())
 	if _inside.size() < needed:
 		return
 

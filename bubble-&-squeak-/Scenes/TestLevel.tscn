@@ -4,9 +4,9 @@
 [ext_resource type="TileSet" uid="uid://twcckvq4s8p" path="res://TilesetTest.tres" id="2_oy2kj"]
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="2_sa0i8"]
 [ext_resource type="PackedScene" uid="uid://bn60vt6u4pnmg" path="res://Scenes/player.tscn" id="2_shgkq"]
-[ext_resource type="Script" uid="uid://dnq5fnhmdenjq" path="res://Scripts/cave_exit.gd" id="3_rdb2v"]
 [ext_resource type="PackedScene" uid="uid://dhj2frbe010ae" path="res://Scenes/cube.tscn" id="3_shgkq"]
 [ext_resource type="PackedScene" uid="uid://cj52hkydpsobs" path="res://Scenes/rock.tscn" id="5_oy2kj"]
+[ext_resource type="PackedScene" uid="uid://dk8vfds7hb3ry" path="res://Scenes/Arrival Cave.tscn" id="7_rdb2v"]
 
 [node name="TestLevel" type="Node2D" unique_id=507400590]
 
@@ -18,10 +18,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_ujyaq")
 
 [node name="Exit cave" parent="." unique_id=1124004171 instance=ExtResource("2_sa0i8")]
-position = Vector2(-354, 10)
-script = ExtResource("3_rdb2v")
-start_delay = 0.3
-stagger = 0.5
+position = Vector2(441, 0)
+
+[node name="ArrivalCave" parent="." unique_id=1347216435 instance=ExtResource("7_rdb2v")]
+position = Vector2(-322, 0)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=538773661]
 tile_set = ExtResource("2_oy2kj")

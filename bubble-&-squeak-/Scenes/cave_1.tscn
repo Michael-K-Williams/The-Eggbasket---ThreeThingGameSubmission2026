@@ -30,4 +30,5 @@ texture = ExtResource("4_jgtpf")
 
 [node name="Player2" parent="." unique_id=1972681812 instance=ExtResource("2_k1554")]
 position = Vector2(-16, 125)
+collision_layer = 3
 player_id = 2
