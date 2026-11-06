@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://3tjgk56vci1"]
+
+[ext_resource type="Script" uid="uid://dlfkeyamauiys" path="res://Scripts/cave_entrance.gd" id="1_hjuv6"]
+
+[node name="Exit cave" type="Area2D" unique_id=1124004171]
+script = ExtResource("1_hjuv6")

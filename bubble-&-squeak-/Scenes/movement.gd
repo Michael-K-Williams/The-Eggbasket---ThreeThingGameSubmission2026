@@ -7,20 +7,15 @@ enum Ability { BUBBLE, WIND }
 var ability: Ability
 var _bubble: Bubble = null
 @export var ability_cooldown: float = 0.5
-
 @export var move_speed: float = 300.0
 @export var acceleration: float = 2000.0
 @export var friction: float = 2500.0
-
 @export var jump_velocity: float = -550.0
 @export var jump_cut_factor: float = 0.5
-
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
-
 @export_group("Wind")
 @export var normal_wind_response: float = 0.35  
-
 @export_group("Bubbled")
 @export var bubble_duration: float = 8.0         
 @export var bubble_gravity_scale: float = 0.25
@@ -31,13 +26,15 @@ var _bubble: Bubble = null
 @export var bubble_acceleration: float = 500.0
 @export var bubble_friction: float = 120.0      
 @export var bubble_jump_mult: float = 0.5
-@export var push_transfer: float = 1.0    
-
+@export var push_transfer: float = 1.0  
 @export_group("Props")
-@export var throw_up_ratio: float = 1.0       # arc height: 1.0 = 45 degrees
+@export var throw_up_ratio: float = 1.0    
 @export var pickup_range: float = 120.0
+var in_cave := false
+var _saved_layer: int = 0
+var _saved_mask: int = 0
 
-@export var throw_inherit_velocity: float = 0.5   # how much of your own speed adds to the throw
+@export var throw_inherit_velocity: float = 0.5   
 
 var _act_interact: StringName
 var _held_prop: Prop = null       
@@ -346,3 +343,45 @@ func _update_held_prop() -> void:
 	if _held_prop == null:
 		return
 	_held_prop.global_position = global_position + Vector2(_facing * 6.0, -_body_extents().y - 12.0)
+	
+func enter_cave(cave_pos: Vector2, animated: bool = true) -> void:
+	if in_cave:
+		return
+	in_cave = true
+
+	if _grabbed_cube != null:
+		_grabbed_cube.release(self)
+		_grabbed_cube = null
+	if _held_prop != null:
+		_held_prop.throw(Vector2.ZERO)
+		_held_prop = null
+	if is_bubbled:
+		set_bubbled(false)
+
+	velocity = Vector2.ZERO
+	_saved_layer = collision_layer
+	_saved_mask = collision_mask
+	collision_layer = 0   
+	collision_mask = 0
+	set_physics_process(false)
+
+	if animated:
+		var tween := create_tween()
+		tween.tween_property(self, "global_position", cave_pos, 0.25)
+		tween.parallel().tween_property(self, "modulate:a", 0.0, 0.25)
+		tween.tween_callback(func(): visible = false)
+	else:
+		global_position = cave_pos
+		modulate.a = 0.0
+		visible = false
+
+
+func leave_cave(pos: Vector2) -> void:
+	global_position = pos
+	velocity = Vector2.ZERO
+	visible = true
+	collision_layer = _saved_layer
+	collision_mask = _saved_mask
+	in_cave = false
+	set_physics_process(true)
+	create_tween().tween_property(self, "modulate:a", 1.0, 0.25)
