@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/pressure_plate.gd" id="1_plate"]
+
+[node name="PressurePlate" type="Area2D"]
+script = ExtResource("1_plate")
