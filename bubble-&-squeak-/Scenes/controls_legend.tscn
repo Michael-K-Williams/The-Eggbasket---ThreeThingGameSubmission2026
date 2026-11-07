@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/controls_legend.gd" id="1_legend"]
+
+[node name="ControlsLegend" type="CanvasLayer"]
+script = ExtResource("1_legend")
