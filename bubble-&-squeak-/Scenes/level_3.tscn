@@ -108,11 +108,11 @@ targets = Array[NodePath]([NodePath("../Bridge")])
 stays_pressed = true
 
 [node name="ExitSwitchA" parent="." unique_id=1678972904 instance=ExtResource("14_s8di1")]
-position = Vector2(768, 475)
+position = Vector2(736, 475)
 targets = Array[NodePath]([NodePath("../ExitDoor")])
 
 [node name="ExitSwitchB" parent="." unique_id=1341540707 instance=ExtResource("14_s8di1")]
-position = Vector2(832, 475)
+position = Vector2(864, 475)
 targets = Array[NodePath]([NodePath("../ExitDoor")])
 
 [node name="ExitDoor" parent="." unique_id=947431786 instance=ExtResource("12_f8et3")]

@@ -6,27 +6,17 @@
 [ext_resource type="Texture2D" path="res://sprites/front.png" id="4_455ad"]
 [ext_resource type="Script" path="res://Scripts/coop_camera.gd" id="5_plln5"]
 [ext_resource type="PackedScene" path="res://Scenes/Arrival Cave.tscn" id="6_1481u"]
-[ext_resource type="Script" path="res://Scripts/cave_exit.gd" id="7_3roxn"]
 [ext_resource type="PackedScene" path="res://Scenes/player_bubble.tscn" id="8_xudgf"]
-[ext_resource type="Script" path="res://Scripts/bubble_yeti.gd" id="9_2l365"]
 [ext_resource type="PackedScene" path="res://Scenes/player_wind.tscn" id="10_8rg08"]
-[ext_resource type="Script" path="res://Scripts/wind_yeti.gd" id="11_mrbar"]
 [ext_resource type="PackedScene" path="res://Scenes/level_title.tscn" id="12_hp2jh"]
-[ext_resource type="Script" path="res://Scripts/level_title.gd" id="13_81jj3"]
 [ext_resource type="PackedScene" path="res://Scenes/controls_legend.tscn" id="14_ih743"]
-[ext_resource type="Script" path="res://Scripts/controls_legend.gd" id="15_vvpei"]
 [ext_resource type="PackedScene" path="res://Scenes/cube.tscn" id="16_b2qyy"]
-[ext_resource type="Script" path="res://PushableCube.gd" id="17_f53qf"]
 [ext_resource type="Script" path="res://Scripts/respawn_point.gd" id="18_xpmb8"]
 [ext_resource type="PackedScene" path="res://Scenes/pressure_plate.tscn" id="19_3mnnm"]
-[ext_resource type="Script" path="res://Scripts/pressure_plate.gd" id="20_m551m"]
 [ext_resource type="Script" path="res://Scripts/kill_zone.gd" id="21_wjhud"]
 [ext_resource type="PackedScene" path="res://Scenes/door.tscn" id="22_ul7kj"]
-[ext_resource type="Script" path="res://Scripts/door.gd" id="23_u8xdx"]
 [ext_resource type="PackedScene" path="res://Scenes/exit_cave.tscn" id="24_ntqvt"]
-[ext_resource type="Script" path="res://Scripts/cave_entrance.gd" id="25_ivdcc"]
 [ext_resource type="PackedScene" path="res://Scenes/hint.tscn" id="26_box0d"]
-[ext_resource type="Script" path="res://Scripts/hint.gd" id="27_0glyk"]
 [ext_resource type="TileSet" path="res://TilesetTest.tres" id="28_ikn7d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shgkq"]
@@ -90,57 +80,43 @@ limit_right = 2048
 limit_bottom = 576
 script = ExtResource("5_plln5")
 
-[node name="ArrivalCave" type="Node2D" parent="." unique_id=563540888 instance=ExtResource("6_1481u")]
-z_index = -1
+[node name="ArrivalCave" parent="." unique_id=563540888 instance=ExtResource("6_1481u")]
 position = Vector2(80, 440)
-script = ExtResource("7_3roxn")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1007071977 instance=ExtResource("8_xudgf")]
+[node name="Player" parent="." unique_id=1007071977 instance=ExtResource("8_xudgf")]
 position = Vector2(90, 448)
-disable_mode = 2
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("9_2l365")
 
-[node name="Player2" type="CharacterBody2D" parent="." unique_id=1596794936 instance=ExtResource("10_8rg08")]
+[node name="Player2" parent="." unique_id=1596794936 instance=ExtResource("10_8rg08")]
 position = Vector2(140, 448)
-disable_mode = 2
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("11_mrbar")
-player_id = 2
+gust_linger = 0.5
+gust_size = Vector2(48, 220)
+gust_strength = 700.0
+gust_source_width = 0.35
 
-[node name="LevelTitle" type="CanvasLayer" parent="." unique_id=1668866556 instance=ExtResource("12_hp2jh")]
-script = ExtResource("13_81jj3")
+[node name="LevelTitle" parent="." unique_id=1668866556 instance=ExtResource("12_hp2jh")]
 number = "Level 6"
 title = "Snowed Under"
 
-[node name="ControlsLegend" type="CanvasLayer" parent="." unique_id=1315592948 instance=ExtResource("14_ih743")]
-script = ExtResource("15_vvpei")
+[node name="ControlsLegend" parent="." unique_id=1315592948 instance=ExtResource("14_ih743")]
 show_seconds = 5.0
 
-[node name="Cube" type="RigidBody2D" parent="." unique_id=977927514 instance=ExtResource("16_b2qyy")]
+[node name="Cube" parent="." unique_id=977927514 instance=ExtResource("16_b2qyy")]
 position = Vector2(240, 448)
-collision_layer = 2
-collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_shgkq")
-script = ExtResource("17_f53qf")
 
 [node name="Checkpoint" type="Marker2D" parent="." unique_id=2020709845]
 position = Vector2(1060, 448)
 script = ExtResource("18_xpmb8")
 
-[node name="Cube2" type="RigidBody2D" parent="." unique_id=618486962 instance=ExtResource("16_b2qyy")]
+[node name="Cube2" parent="." unique_id=618486962 instance=ExtResource("16_b2qyy")]
 position = Vector2(1104, 448)
-collision_layer = 2
-collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_shgkq")
-script = ExtResource("17_f53qf")
 
-[node name="BridgeSwitch" type="Area2D" parent="." unique_id=684899800 instance=ExtResource("19_3mnnm")]
+[node name="BridgeSwitch" parent="." unique_id=684899800 instance=ExtResource("19_3mnnm")]
 position = Vector2(1232, 475)
-script = ExtResource("20_m551m")
+size = Vector2(64, 10)
 targets = Array[NodePath]([NodePath("../SpikeBridge")])
+counts_players = false
 
 [node name="Spikes" type="Area2D" parent="." unique_id=2027219585]
 position = Vector2(1424, 512)
@@ -149,52 +125,43 @@ size = Vector2(224, 64)
 tint = Color(0.85, 0.15, 0.15, 0.55)
 look = 1
 
-[node name="SpikeBridge" type="StaticBody2D" parent="." unique_id=788060886 instance=ExtResource("22_ul7kj")]
-position = Vector2(1424, 528)
-script = ExtResource("23_u8xdx")
+[node name="SpikeBridge" parent="." unique_id=788060886 instance=ExtResource("22_ul7kj")]
+position = Vector2(1424, 560)
 size = Vector2(224, 32)
-open_offset = Vector2(0, -32)
+open_offset = Vector2(0, -64)
 
-[node name="ExitSwitchA" type="Area2D" parent="." unique_id=1706834453 instance=ExtResource("19_3mnnm")]
-position = Vector2(1680, 475)
-script = ExtResource("20_m551m")
+[node name="ExitSwitchA" parent="." unique_id=1706834453 instance=ExtResource("19_3mnnm")]
+position = Vector2(1624, 475)
 targets = Array[NodePath]([NodePath("../ExitDoor")])
 
-[node name="ExitSwitchB" type="Area2D" parent="." unique_id=408147209 instance=ExtResource("19_3mnnm")]
-position = Vector2(1744, 475)
-script = ExtResource("20_m551m")
+[node name="ExitSwitchB" parent="." unique_id=408147209 instance=ExtResource("19_3mnnm")]
+position = Vector2(1752, 475)
 targets = Array[NodePath]([NodePath("../ExitDoor")])
 
-[node name="ExitDoor" type="StaticBody2D" parent="." unique_id=59384439 instance=ExtResource("22_ul7kj")]
+[node name="ExitDoor" parent="." unique_id=59384439 instance=ExtResource("22_ul7kj")]
 position = Vector2(1840, 432)
-script = ExtResource("23_u8xdx")
 plates_needed = 2
 stays_open = true
 
-[node name="ExitCave" type="Area2D" parent="." unique_id=1124004171 instance=ExtResource("24_ntqvt")]
-z_index = -1
+[node name="ExitCave" parent="." unique_id=1124004171 instance=ExtResource("24_ntqvt")]
 position = Vector2(1936, 440)
-script = ExtResource("25_ivdcc")
-next_level_path = "res://Scenes/main_menu.tscn"
+next_level_path = "res://Scenes/level_7.tscn"
 
-[node name="StepHint" type="Area2D" parent="." unique_id=1952331600 instance=ExtResource("26_box0d")]
+[node name="StepHint" parent="." unique_id=1952331600 instance=ExtResource("26_box0d")]
 position = Vector2(300, 440)
-script = ExtResource("27_0glyk")
 text = "Too high to jump. Push the cube against it
 and climb up off the top of it."
 trigger_size = Vector2(300, 120)
 box_offset = Vector2(0, -150)
 
-[node name="BridgeHint" type="Area2D" parent="." unique_id=439650232 instance=ExtResource("26_box0d")]
+[node name="BridgeHint" parent="." unique_id=439650232 instance=ExtResource("26_box0d")]
 position = Vector2(1180, 440)
-script = ExtResource("27_0glyk")
 text = "The bridge only stays up while something's on the switch."
 trigger_size = Vector2(260, 120)
 box_offset = Vector2(0, -140)
 
-[node name="ExitHint" type="Area2D" parent="." unique_id=1791546697 instance=ExtResource("26_box0d")]
+[node name="ExitHint" parent="." unique_id=1791546697 instance=ExtResource("26_box0d")]
 position = Vector2(1712, 440)
-script = ExtResource("27_0glyk")
 text = "Both switches at the same time."
 trigger_size = Vector2(200, 120)
 box_offset = Vector2(0, -140)

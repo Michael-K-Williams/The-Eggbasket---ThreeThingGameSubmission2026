@@ -129,6 +129,10 @@ func _bubble_radius() -> float:
 # ---------- bubbled state ----------
 
 func set_bubbled(value: bool) -> void:
+	# lift off a couple of pixels so a bubble drifting along the ground doesn't
+	# snag on the corner of a tile at the edge of a pit
+	if value and not is_bubbled and is_on_floor():
+		global_position.y -= 3.0
 	is_bubbled = value
 	was_in_bubble = true
 	if _bubble_timer > bubble_leave_time:
@@ -410,6 +414,16 @@ func _let_go_of_everything() -> void:
 # (the arrival cave), then where we started
 func _respawn_position() -> Vector2:
 	var fallback_node: Node = null
+	# with several RespawnPoints in a long level, use the furthest one we've got
+	# past (a little slack so dying right on top of one still counts)
+	var best: RespawnPoint = null
+	for node in get_tree().get_nodes_in_group("respawn_points"):
+		if node is RespawnPoint:
+			var rp := node as RespawnPoint
+			if rp.global_position.x <= global_position.x + 100.0 and (best == null or rp.global_position.x > best.global_position.x):
+				best = rp
+	if best != null:
+		return best.get_respawn_position(self)
 	for node in get_tree().get_nodes_in_group("respawn_points"):
 		if not node.has_method("get_respawn_position"):
 			continue

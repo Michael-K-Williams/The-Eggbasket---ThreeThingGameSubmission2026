@@ -98,7 +98,9 @@ physics_material_override = SubResource("PhysicsMaterial_shgkq")
 
 [node name="CubePlate" parent="." unique_id=598077862 instance=ExtResource("13_da22s")]
 position = Vector2(272, 475)
+size = Vector2(64, 10)
 targets = Array[NodePath]([NodePath("../GateDoor")])
+counts_players = false
 
 [node name="GateDoor" parent="." unique_id=205791823 instance=ExtResource("15_pvfcc")]
 position = Vector2(368, 432)
