@@ -128,7 +128,7 @@ next_level_path = "res://Scenes/level_3.tscn"
 
 [node name="LevelTitle" parent="." unique_id=1601910479 instance=ExtResource("20_w3147")]
 number = "Level 2"
-title = "Heavy Lifting"
+title = "Box Clever"
 
 [node name="ControlsLegend" parent="." unique_id=402405275 instance=ExtResource("22_l4j3r")]
 show_seconds = 5.0

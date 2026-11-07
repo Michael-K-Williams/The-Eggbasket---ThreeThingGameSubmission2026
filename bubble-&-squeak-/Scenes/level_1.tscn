@@ -109,7 +109,7 @@ next_level_path = "res://Scenes/level_2.tscn"
 
 [node name="LevelTitle" parent="." unique_id=39342590 instance=ExtResource("19_0wb0u")]
 layer = 60
-title = "Lift-off"
+title = "Up and Away"
 
 [node name="ControlsLegend" parent="." unique_id=444401426 instance=ExtResource("21_s764c")]
 show_seconds = 12.0

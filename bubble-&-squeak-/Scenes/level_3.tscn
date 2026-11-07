@@ -125,7 +125,7 @@ next_level_path = "res://Scenes/main_menu.tscn"
 
 [node name="LevelTitle" parent="." unique_id=1544823458 instance=ExtResource("18_r5kqc")]
 number = "Level 3"
-title = "Both at Once"
+title = "Thin Ice"
 
 [node name="ControlsLegend" parent="." unique_id=698331196 instance=ExtResource("20_k0ktw")]
 show_seconds = 5.0
