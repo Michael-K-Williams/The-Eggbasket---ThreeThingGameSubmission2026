@@ -4,5 +4,6 @@
 [ext_resource type="Script" path="res://Scripts/wind_yeti.gd" id="2_script"]
 
 [node name="PlayerWind" unique_id=0 instance=ExtResource("1_base")]
+collision_layer = 2
 script = ExtResource("2_script")
 player_id = 2

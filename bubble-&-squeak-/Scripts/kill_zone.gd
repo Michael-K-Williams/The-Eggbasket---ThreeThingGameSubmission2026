@@ -6,6 +6,7 @@ extends Area2D
 
 @export var size := Vector2(200, 40)
 @export var spare_bubbled: bool = false
+@export var tint := Color(0.9, 0.2, 0.2, 0.25)   # placeholder look until there's art: red spikes, blue for water
 
 
 func _ready() -> void:
@@ -49,4 +50,4 @@ func _touches(yeti: Yeti, rect: Rect2) -> bool:
 
 func _draw() -> void:
 	# placeholder look so you can see where it is
-	draw_rect(Rect2(-size / 2.0, size), Color(0.9, 0.2, 0.2, 0.25))
+	draw_rect(Rect2(-size / 2.0, size), tint)
