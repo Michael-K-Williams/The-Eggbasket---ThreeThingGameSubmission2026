@@ -1,15 +1,28 @@
 # Anything in here sends a yeti back to the respawn point. Put one under the
 # level for falling out of the world, or use it for spikes and water.
 # spare_bubbled is for the ice water: a bubbled yeti floats on top instead.
+# @tool so it draws in the editor too.
+@tool
 class_name KillZone
 extends Area2D
 
-@export var size := Vector2(200, 40)
-@export var spare_bubbled: bool = false
-@export var tint := Color(0.9, 0.2, 0.2, 0.25)   # placeholder look until there's art: red spikes, blue for water
+@export var size := Vector2(200, 40):
+	set(v):
+		size = v
+		queue_redraw()
+@export var spare_bubbled: bool = false:
+	set(v):
+		spare_bubbled = v
+		queue_redraw()
+@export var tint := Color(0.9, 0.2, 0.2, 0.25):   # placeholder look until there's art: red spikes, blue for water
+	set(v):
+		tint = v
+		queue_redraw()
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	collision_layer = 0
 	collision_mask = 3   # players are on layer 2 in the levels, 1 on the bare player scene
 	monitorable = false
@@ -24,6 +37,8 @@ func _ready() -> void:
 # checked every frame rather than on body_entered, so a yeti whose bubble pops
 # while inside the zone still dies
 func _physics_process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	var rect := Rect2(global_position - size / 2.0, size)
 	for node in get_tree().get_nodes_in_group("yetis"):
 		var yeti := node as Yeti
@@ -51,3 +66,6 @@ func _touches(yeti: Yeti, rect: Rect2) -> bool:
 func _draw() -> void:
 	# placeholder look so you can see where it is
 	draw_rect(Rect2(-size / 2.0, size), tint)
+	if Engine.is_editor_hint():
+		draw_rect(Rect2(-size / 2.0, size), Color(tint, 0.9), false, 1.5)
+		EditorDraw.label(self, Vector2.ZERO, "kill zone, bubbles safe" if spare_bubbled else "kill zone")

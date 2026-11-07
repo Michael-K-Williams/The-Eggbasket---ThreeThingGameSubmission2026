@@ -2,13 +2,27 @@
 # into its trigger area and fades back out when they've all left.
 # Drop Scenes/hint.tscn in a level, write the text, size the trigger area and
 # move the box with box_offset (it's relative to the hint's position).
+# @tool so the editor shows the box and the trigger area while you place it.
+@tool
 class_name Hint
 extends Area2D
 
-@export_multiline var text: String = ""
-@export var trigger_size := Vector2(240, 140)
-@export var box_offset := Vector2(0, -120)
-@export var font_size: int = 15
+@export_multiline var text: String = "":
+	set(v):
+		text = v
+		queue_redraw()
+@export var trigger_size := Vector2(240, 140):
+	set(v):
+		trigger_size = v
+		queue_redraw()
+@export var box_offset := Vector2(0, -120):
+	set(v):
+		box_offset = v
+		queue_redraw()
+@export var font_size: int = 15:
+	set(v):
+		font_size = v
+		queue_redraw()
 @export var fade_time: float = 0.3
 @export var always_show: bool = false
 
@@ -22,6 +36,8 @@ var _rest_pos := Vector2.ZERO
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	collision_layer = 0
 	collision_mask = 2   # yetis
 	monitorable = false
@@ -72,7 +88,7 @@ static func box_style() -> StyleBoxFlat:
 
 
 func _physics_process(_delta: float) -> void:
-	if always_show:
+	if Engine.is_editor_hint() or always_show:
 		return
 	var near := false
 	for body in get_overlapping_bodies():
@@ -96,3 +112,18 @@ func _set_shown(value: bool) -> void:
 
 func is_showing() -> bool:
 	return _shown
+
+
+# editor preview: the trigger area and roughly where the box will sit
+func _draw() -> void:
+	if not Engine.is_editor_hint():
+		return
+	EditorDraw.dashed_rect(self, Rect2(-trigger_size / 2.0, trigger_size), Color(1.0, 0.85, 0.3, 0.7))
+	var font := ThemeDB.fallback_font
+	var shown := text if text != "" else "(empty hint)"
+	var t := font.get_multiline_string_size(shown, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size)
+	var pad := Vector2(24, 15)
+	var box := Rect2(box_offset - (t + pad) / 2.0, t + pad)
+	draw_style_box(box_style(), box)
+	draw_multiline_string(font, box.position + Vector2(12, 7 + font.get_ascent(font_size)), shown,
+		HORIZONTAL_ALIGNMENT_CENTER, t.x, font_size, -1, Color(0.95, 0.97, 1.0))

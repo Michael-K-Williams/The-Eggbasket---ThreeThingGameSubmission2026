@@ -2,14 +2,22 @@
 # Drag the doors (or anything with plate_pressed / plate_released) into
 # `targets` in the inspector and it'll tell them when it goes down and up.
 # Bubbled yetis float, so they don't count as standing on it.
+# @tool so it draws in the editor, with a dashed line to each thing it opens.
+@tool
 class_name PressurePlate
 extends Area2D
 
 signal pressed
 signal released
 
-@export var size := Vector2(48, 10)
-@export var targets: Array[NodePath] = []
+@export var size := Vector2(48, 10):
+	set(v):
+		size = v
+		queue_redraw()
+@export var targets: Array[NodePath] = []:
+	set(v):
+		targets = v
+		queue_redraw()
 @export var stays_pressed: bool = false   # once pressed, stays down for good
 @export var counts_props: bool = true     # whether a thrown rock is heavy enough
 
@@ -17,6 +25,8 @@ var is_pressed := false
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	collision_layer = 0
 	collision_mask = 2 | 16   # players + cubes on 2, props on 16. Not 1, that's the floor it sits on
 	monitorable = false
@@ -28,7 +38,15 @@ func _ready() -> void:
 	add_child(cs)
 
 
+func _process(_delta: float) -> void:
+	# editor only: keep the wiring lines following the doors as they're dragged about
+	if Engine.is_editor_hint():
+		queue_redraw()
+
+
 func _physics_process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	var weighed_down := _something_on_it()
 	if weighed_down and not is_pressed:
 		_set_pressed(true)
@@ -73,3 +91,9 @@ func _draw() -> void:
 	var top := size.y / 2.0 - h
 	draw_rect(Rect2(-size.x / 2.0, top, size.x, h), Color(0.85, 0.65, 0.2) if is_pressed else Color(0.9, 0.35, 0.25))
 	draw_rect(Rect2(-size.x / 2.0, top, size.x, h), Color(0.25, 0.2, 0.15), false, 2.0)
+	if Engine.is_editor_hint():
+		for path in targets:
+			var t := get_node_or_null(path) as Node2D
+			if t:
+				draw_dashed_line(Vector2.ZERO, to_local(t.global_position), Color(1.0, 0.85, 0.3, 0.8), 1.5, 6.0)
+		EditorDraw.label(self, Vector2(0, -14), "switch (stays down)" if stays_pressed else "switch")

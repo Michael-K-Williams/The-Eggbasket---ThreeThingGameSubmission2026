@@ -1,7 +1,11 @@
+@tool   # so the cave shows up in the editor, the arrival sequence below only runs in game
 class_name CaveExit
 extends Node2D
 
-@export var size := Vector2(64, 80)        # match the entrance cave's size
+@export var size := Vector2(64, 80):       # match the entrance cave's size
+	set(v):
+		size = v
+		queue_redraw()
 @export var hold_black: float = 0.1        # stays fully black while players get hidden
 @export var fade_time: float = 0.25        # fade-in from black (keep short for a seamless feel)
 @export var start_delay: float = 0.1       # pause on the empty cave before they step out
@@ -12,6 +16,8 @@ extends Node2D
 
 func _draw() -> void:
 	CaveEntrance.draw_cave(self, size)
+	if Engine.is_editor_hint():
+		EditorDraw.label(self, Vector2(0, -size.y / 2.0 - 10.0), "arrival / respawn")
 
 
 # same spot they step out at when a level starts
@@ -21,6 +27,8 @@ func get_respawn_position(yeti: Yeti) -> Vector2:
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	add_to_group("respawn_points")   # dying sends you back here, see Yeti.die()
 
 	# fully black from the very first frame, so nothing pops in

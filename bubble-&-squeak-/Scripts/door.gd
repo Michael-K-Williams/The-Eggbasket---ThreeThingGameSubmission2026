@@ -1,14 +1,22 @@
 # A door that slides up out of the way when its plates are pressed.
 # Point pressure plates at it with their `targets`. With plates_needed = 2
 # both plates have to be held at once, which is the usual "one player each" puzzle.
+# @tool so it draws in the editor, with a dashed outline where it'll slide to.
+@tool
 class_name Door
 extends StaticBody2D
 
-@export var size := Vector2(32, 96)
+@export var size := Vector2(32, 96):
+	set(v):
+		size = v
+		queue_redraw()
 @export var plates_needed: int = 1
 @export var stays_open: bool = false      # once open, never shuts again
 @export var slide_time: float = 0.35
-@export var open_offset := Vector2.ZERO   # where it slides to, zero = straight up by its own height
+@export var open_offset := Vector2.ZERO:  # where it slides to, zero = straight up by its own height
+	set(v):
+		open_offset = v
+		queue_redraw()
 
 var is_open := false
 var _held_by: Array[Node] = []
@@ -17,6 +25,8 @@ var _tween: Tween
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return   # editor just draws it
 	# on World and Player layers so it blocks yetis, cubes and props alike
 	collision_layer = 1 | 2
 	collision_mask = 0
@@ -58,3 +68,7 @@ func _update() -> void:
 func _draw() -> void:
 	draw_rect(Rect2(-size / 2.0, size), Color(0.32, 0.28, 0.36))
 	draw_rect(Rect2(-size / 2.0, size), Color(0.15, 0.12, 0.18), false, 3.0)
+	if Engine.is_editor_hint():
+		var off := open_offset if open_offset != Vector2.ZERO else Vector2(0, -size.y)
+		EditorDraw.dashed_rect(self, Rect2(off - size / 2.0, size), Color(0.6, 1.0, 0.6, 0.8))
+		EditorDraw.label(self, off, "open")

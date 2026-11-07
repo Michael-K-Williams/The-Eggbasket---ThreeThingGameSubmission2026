@@ -1,16 +1,47 @@
 # A fan you place in a level (Scenes/fan.tscn). Blows all the time in
 # wind_direction. Set the direction in the inspector rather than rotating the
 # node, the script sets the rotation itself.
+# @tool so the editor shows the fan and an outline of where its wind reaches.
+@tool
 class_name Fan
 extends StaticBody2D
 
-@export var fan_size := Vector2(40, 14)
-@export var wind_direction := Vector2.UP
-@export var tunnel_size := Vector2(48, 220)
+@export var fan_size := Vector2(40, 14):
+	set(v):
+		fan_size = v
+		queue_redraw()
+@export var wind_direction := Vector2.UP:
+	set(v):
+		wind_direction = v
+		queue_redraw()
+@export var tunnel_size := Vector2(48, 220):
+	set(v):
+		tunnel_size = v
+		queue_redraw()
 @export var wind_strength := 700.0
 
 
+# editor preview only, in game the fan builds real nodes in _ready
+func _draw() -> void:
+	if not Engine.is_editor_hint():
+		return
+	var dir := wind_direction.normalized() if wind_direction != Vector2.ZERO else Vector2.UP
+	draw_set_transform(Vector2.ZERO, Vector2.UP.angle_to(dir))
+	draw_rect(Rect2(-fan_size / 2.0, fan_size), Color(0.35, 0.42, 0.55))
+	var tunnel := Rect2(-tunnel_size.x / 2.0, -fan_size.y / 2.0 - tunnel_size.y, tunnel_size.x, tunnel_size.y)
+	draw_rect(tunnel, Color(0.75, 0.92, 1.0, 0.12))
+	EditorDraw.dashed_rect(self, tunnel, Color(0.75, 0.92, 1.0, 0.8))
+	# arrow showing which way it blows
+	var tip := Vector2(0, -fan_size.y / 2.0 - 40.0)
+	draw_line(Vector2(0, -fan_size.y / 2.0 - 6.0), tip, Color(0.75, 0.92, 1.0), 2.0)
+	draw_line(tip, tip + Vector2(-6, 8), Color(0.75, 0.92, 1.0), 2.0)
+	draw_line(tip, tip + Vector2(6, 8), Color(0.75, 0.92, 1.0), 2.0)
+	draw_set_transform(Vector2.ZERO, 0.0)
+
+
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	collision_layer = 1
 	collision_mask = 0
 	rotation = Vector2.UP.angle_to(wind_direction.normalized())

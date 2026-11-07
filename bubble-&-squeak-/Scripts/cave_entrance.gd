@@ -1,3 +1,4 @@
+@tool   # so the cave shows up in the editor, the gameplay below only runs in game
 class_name CaveEntrance
 extends Area2D
 
@@ -22,6 +23,8 @@ var _time := 0.0
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	collision_layer = 0
 	collision_mask = 2   
 	monitorable = false
@@ -50,6 +53,8 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	_time += delta
 	queue_redraw()  
 	if _transitioning:
@@ -119,6 +124,9 @@ func _check_ready() -> void:
 
 func _draw() -> void:
 	CaveEntrance.draw_cave(self, size)
+	if Engine.is_editor_hint():
+		var to := next_level_path.get_file() if next_level_path != "" else "(no next level set)"
+		EditorDraw.label(self, Vector2(0, -size.y / 2.0 - 10.0), "exit to " + to)
 
 
 	for i in _inside.size():
