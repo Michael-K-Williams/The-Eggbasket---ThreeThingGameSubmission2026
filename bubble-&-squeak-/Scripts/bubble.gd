@@ -32,13 +32,16 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
-	var yeti := body as Yeti 
+	var yeti := body as Yeti
+	# cubes share the player layer, so this can be something that isn't a yeti
+	if yeti == null:
+		return
 	if _age >= time_can_enter:
 		if yeti.position.y < position.y:
 			yeti.velocity.y = yeti.jump_velocity
 		queue_free()
 		return
-	if yeti == null or yeti.is_bubbled or yeti.was_in_bubble:
+	if yeti.is_bubbled or yeti.was_in_bubble:
 		return
 	yeti.set_bubbled(true)
 	queue_free()  # the bubble is absorbed
