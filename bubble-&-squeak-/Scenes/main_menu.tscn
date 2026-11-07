@@ -1,32 +1,12 @@
 [gd_scene format=3 uid="uid://d2e6bh055l32g"]
 
-[ext_resource type="Script" uid="uid://b6a3tilw1rlac" path="res://Scripts/button.gd" id="1_28flt"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_menu"]
 
-[node name="MainMenu" type="Control" unique_id=93646524]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Button" type="Button" parent="." unique_id=1462196357]
-layout_mode = 0
-offset_left = 362.0
-offset_top = 288.0
-offset_right = 662.0
-offset_bottom = 388.0
-text = "start"
-script = ExtResource("1_28flt")
-
-[node name="Label" type="Label" parent="." unique_id=220275101]
-layout_mode = 0
-offset_left = 412.0
-offset_top = 150.0
-offset_right = 612.0
-offset_bottom = 192.0
-text = "Bubble and Squeak"
-horizontal_alignment = 1
-uppercase = true
-
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+script = ExtResource("1_menu")
