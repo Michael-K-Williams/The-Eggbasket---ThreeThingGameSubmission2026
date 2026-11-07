@@ -4,10 +4,11 @@ extends Area2D
 @export var radius: float = 30.0
 @export_flags_2d_physics var player_mask: int = 2   
 @export_flags_2d_physics var bubble_layer: int = 8   
-@export var lifetime: float = 0.0  
+@export var lifetime: float = 10.0  
 @export var wind_response: float = 1.5            
-@export var drag: float = 150.0
-@export var max_speed: float = 200.0
+@export var drag: float = 0.0
+@export var max_speed: float = 0.0
+@export var time_can_enter: float = 0.5
 
 var velocity := Vector2.ZERO
 var _wind_accel := Vector2.ZERO
@@ -30,10 +31,14 @@ func _ready() -> void:
 
 	body_entered.connect(_on_body_entered)
 
-
 func _on_body_entered(body: Node2D) -> void:
 	var yeti := body as Yeti 
-	if yeti == null or yeti.is_bubbled:
+	if _age >= time_can_enter:
+		if yeti.position.y < position.y:
+			yeti.velocity.y = yeti.jump_velocity
+		queue_free()
+		return
+	if yeti == null or yeti.is_bubbled or yeti.was_in_bubble:
 		return
 	yeti.set_bubbled(true)
 	queue_free()  # the bubble is absorbed

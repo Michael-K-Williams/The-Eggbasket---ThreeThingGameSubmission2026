@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bn60vt6u4pnmg"]
 
 [ext_resource type="Texture2D" uid="uid://br42xp6v8fxfy" path="res://sprites/Aster_SpriteSheet.png" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://dv3jaeusa0s0m" path="res://Scenes/movement.gd" id="2_move"]
+[ext_resource type="Script" uid="uid://dv3jaeusa0s0m" path="res://Scripts/movement.gd" id="2_move"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(33, 59)

@@ -18,14 +18,16 @@ var _bubble: Bubble = null
 @export var normal_wind_response: float = 0.35  
 @export_group("Bubbled")
 @export var bubble_duration: float = 8.0         
-@export var bubble_gravity_scale: float = 0.25
+@export var bubble_gravity_scale: float = 0
 @export var bubble_max_fall_speed: float = 70.0
 @export var bubble_max_rise_speed: float = 300.0
-@export var bubble_wind_response: float = 1.5    
-@export var bubble_move_speed_mult: float = 0.7
-@export var bubble_acceleration: float = 500.0
+@export var bubble_wind_response: float = 1    
+@export var bubble_move_speed_mult: float = 0
+@export var bubble_acceleration: float = 0.0
 @export var bubble_friction: float = 120.0      
 @export var bubble_jump_mult: float = 0.5
+@export var bubble_leave_time: float = bubble_duration - 0.3
+@export var was_in_bubble: bool = false
 @export var push_transfer: float = 1.0  
 @export_group("Props")
 @export var throw_up_ratio: float = 1.0    
@@ -125,6 +127,9 @@ func _bubble_radius() -> float:
 
 func set_bubbled(value: bool) -> void:
 	is_bubbled = value
+	was_in_bubble = true
+	if _bubble_timer > bubble_leave_time:
+		velocity = Vector2.ZERO
 	_bubble_visual.visible = value
 	_bubble_timer = bubble_duration
 	if value and _grabbed_cube != null:
@@ -144,8 +149,8 @@ func _tick_bubble(delta: float) -> void:
 
 
 
-func receive_push(push_velocity: Vector2) -> void:
-	velocity.x = push_velocity.x
+"func receive_push(push_velocity: Vector2) -> void:
+	velocity.x = push_velocity.x"
 
 
 func _push_bubbled_players(intended_velocity: Vector2) -> void:
@@ -159,7 +164,8 @@ func _push_bubbled_players(intended_velocity: Vector2) -> void:
 			continue  
 		var amount := intended_velocity.dot(push_dir)
 		if amount > 0.0:
-			other.receive_push(push_dir * amount * push_transfer)
+			other.set_bubbled(false)
+			"other.receive_push(push_dir * amount * push_transfer)"
 
 
 # ---------- wind ----------
@@ -194,7 +200,8 @@ func _handle_horizontal(delta: float) -> void:
 	var direction := Input.get_axis(_act_left, _act_right)
 	if direction != 0.0:
 		_facing = signf(direction)
-
+		if _bubble_timer <= bubble_leave_time:
+			set_bubbled(false)
 	var speed := move_speed
 	var accel := acceleration
 	var drag := friction
@@ -212,8 +219,9 @@ func _handle_horizontal(delta: float) -> void:
 
 
 func _handle_jump(delta: float) -> void:
-	if is_on_floor():
+	if is_on_floor() or is_bubbled:
 		_coyote_timer = coyote_time
+		was_in_bubble = false
 	else:
 		_coyote_timer -= delta
 
@@ -224,6 +232,11 @@ func _handle_jump(delta: float) -> void:
 
 	if _grabbed_cube == null and _jump_buffer_timer > 0.0 and _coyote_timer > 0.0:
 		velocity.y = jump_velocity * (bubble_jump_mult if is_bubbled else 1.0)
+		if _bubble_timer <= bubble_leave_time:
+			set_bubbled(false)
+		else:
+			if is_bubbled:
+				velocity = Vector2.ZERO
 		_jump_buffer_timer = 0.0
 		_coyote_timer = 0.0
 
@@ -283,6 +296,7 @@ func _blow_bubble() -> void:
 	bubble.global_position = global_position + Vector2(
 		_facing * (_body_extents().x + bubble.radius + 4.0), 0.0)
 	_bubble = bubble
+	
 
 
 func _place_fan() -> void:
@@ -290,12 +304,14 @@ func _place_fan() -> void:
 		_fan.queue_free()  
 
 	var fan := Fan.new()
-	fan.starts_stuck = true
+	fan.wind_direction = Vector2(_facing,0)
 	get_parent().add_child(fan)
 	var ext := _body_extents()
 	fan.global_position = Vector2(
 		global_position.x + _facing * (ext.x + fan.fan_size.x / 2.0 + 6.0),
 		global_position.y + ext.y - fan.fan_size.y / 2.0)
+	
+
 	_fan = fan
 
 func _handle_props() -> void:
