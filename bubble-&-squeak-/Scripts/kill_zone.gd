@@ -42,11 +42,24 @@ func _ready() -> void:
 	collision_mask = 3   # players are on layer 2 in the levels, 1 on the bare player scene
 	monitorable = false
 
+	var lethal := _lethal_rect()
 	var rect_shape := RectangleShape2D.new()
-	rect_shape.size = size
+	rect_shape.size = lethal.size
 	var cs := CollisionShape2D.new()
 	cs.shape = rect_shape
+	cs.position = lethal.get_center()
 	add_child(cs)
+
+
+# Spikes only hurt once you've dropped down onto the points, so you fall into
+# the pit first instead of dying the moment you cross the edge. The zone's top
+# stays where it was, it's just the sharp bit at the bottom that counts.
+func _lethal_rect() -> Rect2:
+	var full := Rect2(-size / 2.0, size)
+	if look != 1:
+		return full
+	var h := minf(spike_height * 0.6, size.y)
+	return Rect2(full.position.x, full.end.y - h, size.x, h)
 
 
 # checked every frame rather than on body_entered, so a yeti whose bubble pops
@@ -54,7 +67,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	var rect := Rect2(global_position - size / 2.0, size)
+	var local := _lethal_rect()
+	var rect := Rect2(global_position + local.position, local.size)
 	for node in get_tree().get_nodes_in_group("yetis"):
 		var yeti := node as Yeti
 		if yeti == null or yeti.in_cave:
