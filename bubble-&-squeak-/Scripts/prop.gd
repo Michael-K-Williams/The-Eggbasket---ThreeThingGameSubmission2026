@@ -73,6 +73,9 @@ func _ready() -> void:
 
 	_build_extras()
 	_set_state(State.STUCK if starts_stuck else State.FREE)
+	
+func is_flying() -> bool:
+	return _thrown and state == State.FREE
 
 
 # ---------- state ----------

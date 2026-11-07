@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bli0uxayf5qbb"]
+
+[ext_resource type="Script" uid="uid://db6eiyetvifhi" path="res://Scripts/door_key.gd" id="1_ut0wq"]
+
+[node name="key" type="RigidBody2D" unique_id=1811230457]
+script = ExtResource("1_ut0wq")
