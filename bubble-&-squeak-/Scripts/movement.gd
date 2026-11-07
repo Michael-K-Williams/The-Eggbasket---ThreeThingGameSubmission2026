@@ -203,6 +203,10 @@ func _handle_horizontal(delta: float) -> void:
 	var direction := Input.get_axis(_act_left, _act_right)
 	if direction != 0.0:
 		_facing = signf(direction)
+		# the art faces right, mirror it when we turn round
+		var sprite := get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
+		if sprite:
+			sprite.flip_h = _facing < 0.0
 		if _bubble_timer <= bubble_leave_time:
 			set_bubbled(false)
 	var speed := move_speed

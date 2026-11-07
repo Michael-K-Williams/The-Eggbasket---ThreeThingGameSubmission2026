@@ -10,9 +10,9 @@ extends CanvasLayer
 
 const BUBBLE_COL := Color(0.3, 0.6, 1.0)    # same as the cave orbs
 const SQUEAK_COL := Color(1.0, 0.3, 0.3)
-# Bubble's the mouse and Squeak's the yeti, the names are the wrong way round on purpose
-const P1_SUB := "Player 1 · the mouse"
-const P2_SUB := "Player 2 · the yeti"
+# Bubble's the yeti, Squeak's the mouse in the wizard hat
+const P1_SUB := "Player 1 · the yeti"
+const P2_SUB := "Player 2 · the mouse"
 
 const P1_ROWS := [
 	[["A", "D"], "Move"],

@@ -1,6 +1,6 @@
 # Title screen: the level backdrop with drifting clouds and bubbles floating up,
 # the title in the players' colours, and Play / Controls / Quit.
-# Bubble is the mouse (player 1), Squeak is the yeti (player 2). Yes, that way round.
+# Bubble is the yeti (player 1), Squeak is the mouse in the wizard hat (player 2).
 extends Control
 
 const FIRST_LEVEL := "res://Scenes/level_1.tscn"
@@ -104,7 +104,7 @@ func _build_title() -> void:
 	row.add_child(UiStyle.title("&", 56))
 	row.add_child(UiStyle.title("Squeak", 72, ControlsLegend.SQUEAK_COL))
 	col.add_child(row)
-	col.add_child(UiStyle.title("a co-op puzzle platformer for one mouse and one yeti", 18, Color(0.85, 0.92, 1.0)))
+	col.add_child(UiStyle.title("a co-op puzzle platformer for one yeti and one mouse", 18, Color(0.85, 0.92, 1.0)))
 	_title = col
 
 	# gentle bob
