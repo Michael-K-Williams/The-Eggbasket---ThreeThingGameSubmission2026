@@ -7,13 +7,22 @@ extends Node2D
 @export var start_delay: float = 0.1       # pause on the empty cave before they step out
 @export var stagger: float = 0.0           # 0 = both step out together
 @export var spread: float = 14.0           # horizontal gap between players so they don't overlap
+@export var respawn_spread: float = 40.0   # gap when respawning after a death (a yeti is ~33 wide)
 
 
 func _draw() -> void:
 	CaveEntrance.draw_cave(self, size)
 
 
+# same spot they step out at when a level starts
+func get_respawn_position(yeti: Yeti) -> Vector2:
+	var side := -1.0 if yeti.player_id == 1 else 1.0
+	return global_position + Vector2(side * respawn_spread / 2.0, size.y / 2.0 - yeti._body_extents().y)
+
+
 func _ready() -> void:
+	add_to_group("respawn_points")   # dying sends you back here, see Yeti.die()
+
 	# fully black from the very first frame, so nothing pops in
 	var layer := CanvasLayer.new()
 	layer.layer = 100

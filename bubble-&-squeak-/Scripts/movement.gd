@@ -35,6 +35,7 @@ var bubble_leave_time: float:
 @export var throw_up_ratio: float = 1.0    
 @export var pickup_range: float = 120.0
 var in_cave := false
+var _spawn_fallback := Vector2.ZERO   # where we started, used if the level has no respawn point
 var _saved_layer: int = 0
 var _saved_mask: int = 0
 
@@ -75,6 +76,8 @@ func _ready() -> void:
 	_act_grab = StringName(prefix + "grab")
 	_act_ability = StringName(prefix + "ability")
 	_act_interact = StringName(prefix + "interact")
+	_spawn_fallback = global_position
+	add_to_group("yetis")
 
 	_bubble_visual = BubbleVisual.new()
 	_bubble_visual.radius = _bubble_radius()
@@ -286,6 +289,11 @@ func _use_ability() -> void:
 	pass
 
 
+# cut off anything the ability is still doing (dying, going into a cave)
+func _stop_ability() -> void:
+	pass
+
+
 func _handle_props() -> void:
 	if Input.is_action_just_pressed(_act_interact):
 		print("interact pressed by P", player_id, " held: ", _held_prop, " bubbled: ", is_bubbled, " cube: ", _grabbed_cube)
@@ -337,14 +345,7 @@ func enter_cave(cave_pos: Vector2, animated: bool = true) -> void:
 		return
 	in_cave = true
 
-	if _grabbed_cube != null:
-		_grabbed_cube.release(self)
-		_grabbed_cube = null
-	if _held_prop != null:
-		_held_prop.throw(Vector2.ZERO)
-		_held_prop = null
-	if is_bubbled:
-		set_bubbled(false)
+	_let_go_of_everything()
 
 	velocity = Vector2.ZERO
 	_saved_layer = collision_layer
@@ -373,3 +374,45 @@ func leave_cave(pos: Vector2) -> void:
 	in_cave = false
 	set_physics_process(true)
 	create_tween().tween_property(self, "modulate:a", 1.0, 0.25)
+
+
+
+# ---------- death ----------
+
+# called by KillZone. Drops whatever we're holding and puts us back at the respawn point.
+func die() -> void:
+	if in_cave:
+		return
+	_let_go_of_everything()
+	global_position = _respawn_position()
+	velocity = Vector2.ZERO
+	modulate.a = 0.0
+	create_tween().tween_property(self, "modulate:a", 1.0, 0.4)
+
+
+func _let_go_of_everything() -> void:
+	_stop_ability()
+	if _grabbed_cube != null:
+		_grabbed_cube.release(self)
+		_grabbed_cube = null
+	if _held_prop != null:
+		_held_prop.throw(Vector2.ZERO)
+		_held_prop = null
+	if is_bubbled:
+		set_bubbled(false)
+
+
+# a RespawnPoint wins, then anything else in the "respawn_points" group
+# (the arrival cave), then where we started
+func _respawn_position() -> Vector2:
+	var fallback_node: Node = null
+	for node in get_tree().get_nodes_in_group("respawn_points"):
+		if not node.has_method("get_respawn_position"):
+			continue
+		if node is RespawnPoint:
+			return node.get_respawn_position(self)
+		if fallback_node == null:
+			fallback_node = node
+	if fallback_node != null:
+		return fallback_node.get_respawn_position(self)
+	return _spawn_fallback

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="2_sa0i8"]
 [ext_resource type="PackedScene" path="res://Scenes/player_bubble.tscn" id="2_shgkq"]
 [ext_resource type="PackedScene" path="res://Scenes/player_wind.tscn" id="2_wind"]
+[ext_resource type="Script" path="res://Scripts/kill_zone.gd" id="9_kill"]
 [ext_resource type="PackedScene" uid="uid://dhj2frbe010ae" path="res://Scenes/cube.tscn" id="3_shgkq"]
 [ext_resource type="PackedScene" uid="uid://cj52hkydpsobs" path="res://Scenes/rock.tscn" id="5_oy2kj"]
 [ext_resource type="PackedScene" uid="uid://dk8vfds7hb3ry" path="res://Scenes/Arrival Cave.tscn" id="7_rdb2v"]
@@ -50,3 +51,9 @@ position = Vector2(-106, -19)
 
 [node name="Rock" parent="." unique_id=72182699 instance=ExtResource("5_oy2kj")]
 position = Vector2(75, 13)
+
+
+[node name="FallZone" type="Area2D" parent="."]
+position = Vector2(100, 500)
+script = ExtResource("9_kill")
+size = Vector2(4000, 60)
