@@ -104,6 +104,7 @@ show_seconds = 5.0
 
 [node name="Updraft" parent="." unique_id=612909399 instance=ExtResource("16_svydh")]
 position = Vector2(656, 473)
+tunnel_size = Vector2(48, 414)
 
 [node name="WallDoor" parent="." unique_id=909820758 instance=ExtResource("18_a6441")]
 z_index = -1

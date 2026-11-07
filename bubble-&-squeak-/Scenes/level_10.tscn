@@ -157,6 +157,7 @@ script = ExtResource("23_gac6o")
 
 [node name="Updraft1" parent="." unique_id=1189401827 instance=ExtResource("24_04ndy")]
 position = Vector2(2000, 473)
+tunnel_size = Vector2(48, 414)
 
 [node name="WallDoor1" parent="." unique_id=445066587 instance=ExtResource("20_2mu4h")]
 z_index = -1

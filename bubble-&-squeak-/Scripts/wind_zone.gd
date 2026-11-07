@@ -88,11 +88,17 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var dir := Vector2.UP.rotated(global_rotation)
+	# for wind blowing upwards, where it runs out, so a bubble can hover there
+	# instead of being carried all the way to the ceiling
+	var upward := dir.y < -0.7
+	var top := global_position.y - size.y / 2.0
 	for body in get_overlapping_bodies():
 		if body == exclude:
 			continue
 		if body.has_method("apply_wind"):
 			body.apply_wind(dir, strength)
+		if upward and body.has_method("wind_ceiling"):
+			body.wind_ceiling(top)
 	for area in get_overlapping_areas():
 		if area.has_method("apply_wind"):
 			area.apply_wind(dir, strength)

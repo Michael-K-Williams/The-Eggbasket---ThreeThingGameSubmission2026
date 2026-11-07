@@ -24,7 +24,11 @@ extends CharacterBody2D
 @export var bubble_move_speed_mult: float = 0
 @export var bubble_acceleration: float = 0.0
 @export var bubble_max_wind_speed: float = 300.0   # wind stops speeding a bubble up past this (px/s), 0 = no limit
-@export var bubble_friction: float = 120.0      
+@export var bubble_friction: float = 150.0   # how quickly a drifting bubble slows once the wind stops
+@export var fan_hover_depth: float = 24.0     # how far below the top of a fan's wind a bubble floats
+@export var fan_bob_height: float = 6.0       # how far it bobs up and down there
+@export var fan_bob_period: float = 1.6       # seconds for one bob
+@export var pop_shake_time: float = 0.45      # hold a direction or jump this long (seconds) and the bubble pops, it shakes while you do
 @export var bubble_jump_mult: float = 0.5
 @export var move_pop_grace: float = 0.75   # seconds after getting in before moving or jumping can pop it
 # timer value at which the grace runs out (timer counts down from bubble_duration)
@@ -62,6 +66,9 @@ var _coyote_timer: float = 0.0
 var _jump_buffer_timer: float = 0.0
 var _ability_timer: float = 0.0
 var _bubble_timer: float = 0.0
+var _pop_charge: float = 0.0   # how long we've been trying to get out of the bubble
+var _fan_top: float = INF      # top of the updraft we're in this frame, INF if none
+var _bob_time: float = 0.0
 var _facing: float = 1.0
 var _wind_accel := Vector2.ZERO
 
@@ -139,6 +146,8 @@ func set_bubbled(value: bool) -> void:
 	if _bubble_timer > bubble_leave_time:
 		velocity = Vector2.ZERO
 	_bubble_visual.visible = value
+	_bubble_visual.shake = 0.0
+	_pop_charge = 0.0
 	_bubble_timer = bubble_duration
 	if value and _grabbed_cube != null:
 		if value and _held_prop != null:
@@ -154,6 +163,26 @@ func _tick_bubble(delta: float) -> void:
 	_bubble_timer -= delta
 	if _bubble_timer <= 0.0:
 		set_bubbled(false)
+		return
+	_tick_pop_charge(delta)
+
+
+# Moving or jumping inside a bubble doesn't pop it straight away, so a stray
+# key press can't ruin it. The bubble shakes harder the longer you keep trying,
+# and pops after pop_shake_time. Let go and it settles back down.
+func _tick_pop_charge(delta: float) -> void:
+	var past_grace := _bubble_timer <= bubble_leave_time
+	var trying := past_grace and (Input.get_axis(_act_left, _act_right) != 0.0 or Input.is_action_pressed(_act_jump))
+	if trying:
+		_pop_charge += delta
+	else:
+		_pop_charge = maxf(_pop_charge - delta * 2.0, 0.0)
+	_bubble_visual.shake = clampf(_pop_charge / maxf(pop_shake_time, 0.01), 0.0, 1.0)
+	if _pop_charge >= pop_shake_time:
+		set_bubbled(false)
+		# burst out with a little hop, so popping at the top of a fan carries you
+		# up and over onto the ledge beside it
+		velocity.y = jump_velocity * bubble_jump_mult
 
 
 
@@ -179,6 +208,11 @@ func _push_bubbled_players(intended_velocity: Vector2) -> void:
 # ---------- wind ----------
 
 
+# called by an upward WindZone with the height its wind reaches
+func wind_ceiling(top_y: float) -> void:
+	_fan_top = minf(_fan_top, top_y)
+
+
 func apply_wind(direction: Vector2, strength: float) -> void:
 	var response := bubble_wind_response if is_bubbled else normal_wind_response
 	_wind_accel += direction * strength * response
@@ -187,6 +221,18 @@ func apply_wind(direction: Vector2, strength: float) -> void:
 func _apply_wind(delta: float) -> void:
 	var accel := _wind_accel
 	_wind_accel = Vector2.ZERO
+	var fan_top := _fan_top
+	_fan_top = INF
+
+	# a bubble in a fan's updraft rises to just under where the wind runs out
+	# and bobs gently there, rather than sailing on up to the ceiling
+	if is_bubbled and fan_top < INF:
+		_bob_time += delta
+		var target_y := fan_top + fan_hover_depth + sin(_bob_time * TAU / fan_bob_period) * fan_bob_height
+		var want := clampf((target_y - global_position.y) * 4.0, -bubble_max_rise_speed, bubble_max_rise_speed)
+		velocity.y = move_toward(velocity.y, want, 1500.0 * delta)
+		accel.y = 0.0
+
 	if accel == Vector2.ZERO:
 		return
 	
@@ -220,8 +266,6 @@ func _handle_horizontal(delta: float) -> void:
 		var sprite := get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
 		if sprite:
 			sprite.flip_h = _facing < 0.0
-		if _bubble_timer <= bubble_leave_time:
-			set_bubbled(false)
 	var speed := move_speed
 	var accel := acceleration
 	var drag := friction
@@ -250,13 +294,11 @@ func _handle_jump(delta: float) -> void:
 	else:
 		_jump_buffer_timer -= delta
 
-	if _grabbed_cube == null and _jump_buffer_timer > 0.0 and _coyote_timer > 0.0:
-		velocity.y = jump_velocity * (bubble_jump_mult if is_bubbled else 1.0)
-		if _bubble_timer <= bubble_leave_time:
-			set_bubbled(false)
-		else:
-			if is_bubbled:
-				velocity = Vector2.ZERO
+	# inside a bubble a jump isn't a jump, it's an attempt to get out (see _tick_pop_charge)
+	if is_bubbled:
+		_jump_buffer_timer = 0.0
+	elif _grabbed_cube == null and _jump_buffer_timer > 0.0 and _coyote_timer > 0.0:
+		velocity.y = jump_velocity
 		_jump_buffer_timer = 0.0
 		_coyote_timer = 0.0
 

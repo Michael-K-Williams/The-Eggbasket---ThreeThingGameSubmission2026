@@ -197,6 +197,7 @@ script = ExtResource("23_5u330")
 
 [node name="Updraft1" type="StaticBody2D" parent="." unique_id=1158143018 instance=ExtResource("24_0iecy")]
 position = Vector2(1968, 473)
+tunnel_size = Vector2(48, 414)
 script = ExtResource("25_2ige3")
 
 [node name="WallDoor1" type="StaticBody2D" parent="." unique_id=1217515599 instance=ExtResource("21_f5xb6")]
