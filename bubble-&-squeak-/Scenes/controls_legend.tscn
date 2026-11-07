@@ -2,5 +2,650 @@
 
 [ext_resource type="Script" path="res://Scripts/controls_legend.gd" id="1_legend"]
 
-[node name="ControlsLegend" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tha58"]
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.85)
+border_width_left = 4
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.6, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ltdvt"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqird"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fftvt"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrdlr"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_303ye"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n53pd"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ijl7"]
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.85)
+border_width_left = 4
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.3, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk2fy"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7njb"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg5vb"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ml1an"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plax6"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sse2a"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt5j1"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.9, 1, 0.45)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrj7m"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ControlsLegend" type="CanvasLayer" unique_id=1315592948]
 script = ExtResource("1_legend")
+
+[node name="Screen" type="Control" parent="." unique_id=1495871081]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Cards" type="HBoxContainer" parent="Screen" unique_id=20465463]
+layout_mode = 0
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = -16.0
+mouse_filter = 2
+
+[node name="BubbleCard" type="PanelContainer" parent="Screen/Cards" unique_id=785339741]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tha58")
+
+[node name="Rows" type="VBoxContainer" parent="Screen/Cards/BubbleCard" unique_id=1070360869]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="Heading" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows" unique_id=1821061382]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="Screen/Cards/BubbleCard/Rows/Heading" unique_id=538023819]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(0.3, 0.6, 1, 1)
+text = "Bubble"
+
+[node name="Subtitle" type="Label" parent="Screen/Cards/BubbleCard/Rows/Heading" unique_id=574952945]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.8, 0.88, 1)
+text = "Player 1 · the yeti"
+
+[node name="Move" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows" unique_id=1477867927]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows/Move" unique_id=1728461712]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyA" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Move/Keys" unique_id=51505960]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ltdvt")
+
+[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Move/Keys/KeyA" unique_id=447330947]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "A"
+
+[node name="KeyD" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Move/Keys" unique_id=809904313]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bqird")
+
+[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Move/Keys/KeyD" unique_id=1062638759]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "D"
+
+[node name="Action" type="Label" parent="Screen/Cards/BubbleCard/Rows/Move" unique_id=229964406]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Move"
+
+[node name="Jump" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows" unique_id=1099794050]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows/Jump" unique_id=961632021]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyW" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Jump/Keys" unique_id=1645557502]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fftvt")
+
+[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Jump/Keys/KeyW" unique_id=457207711]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "W"
+
+[node name="Action" type="Label" parent="Screen/Cards/BubbleCard/Rows/Jump" unique_id=1744082566]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Jump"
+
+[node name="Blowabubble" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows" unique_id=319487409]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows/Blowabubble" unique_id=1893691586]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyQ" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Blowabubble/Keys" unique_id=1662881316]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rrdlr")
+
+[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Blowabubble/Keys/KeyQ" unique_id=1023368915]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Q"
+
+[node name="Action" type="Label" parent="Screen/Cards/BubbleCard/Rows/Blowabubble" unique_id=388864638]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Blow a bubble"
+
+[node name="Use_pickup_throw" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows" unique_id=573058176]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows/Use_pickup_throw" unique_id=198169389]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyF" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Use_pickup_throw/Keys" unique_id=554213102]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_303ye")
+
+[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Use_pickup_throw/Keys/KeyF" unique_id=1844735327]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "F"
+
+[node name="Action" type="Label" parent="Screen/Cards/BubbleCard/Rows/Use_pickup_throw" unique_id=1300345911]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Use / pick up / throw"
+
+[node name="Holdtograbacube" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows" unique_id=1889690250]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube" unique_id=780413622]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyLeftmouse" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube/Keys" unique_id=1201155640]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n53pd")
+
+[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube/Keys/KeyLeftmouse" unique_id=1276840868]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Left mouse"
+
+[node name="Action" type="Label" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube" unique_id=215873887]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Hold to grab a cube"
+
+[node name="Spacer" type="Control" parent="Screen/Cards" unique_id=184536488]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SqueakCard" type="PanelContainer" parent="Screen/Cards" unique_id=1640337507]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ijl7")
+
+[node name="Rows" type="VBoxContainer" parent="Screen/Cards/SqueakCard" unique_id=1100073727]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="Heading" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows" unique_id=926528205]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="Screen/Cards/SqueakCard/Rows/Heading" unique_id=1658128070]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+text = "Squeak"
+
+[node name="Subtitle" type="Label" parent="Screen/Cards/SqueakCard/Rows/Heading" unique_id=609080459]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.8, 0.88, 1)
+text = "Player 2 · the mouse"
+
+[node name="Move" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows" unique_id=421823605]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows/Move" unique_id=1299258507]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyLeft" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Move/Keys" unique_id=1875088739]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rk2fy")
+
+[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Move/Keys/KeyLeft" unique_id=837980113]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Left"
+
+[node name="KeyRight" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Move/Keys" unique_id=2000038655]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b7njb")
+
+[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Move/Keys/KeyRight" unique_id=1691383172]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Right"
+
+[node name="Action" type="Label" parent="Screen/Cards/SqueakCard/Rows/Move" unique_id=2091362847]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Move"
+
+[node name="Jump" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows" unique_id=1349001813]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows/Jump" unique_id=1995291771]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyUp" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Jump/Keys" unique_id=1161718402]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jg5vb")
+
+[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Jump/Keys/KeyUp" unique_id=1009533149]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Up"
+
+[node name="Action" type="Label" parent="Screen/Cards/SqueakCard/Rows/Jump" unique_id=33750522]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Jump"
+
+[node name="Holdtoblowwind" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows" unique_id=585639461]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows/Holdtoblowwind" unique_id=1075270230]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyRightShift" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Holdtoblowwind/Keys" unique_id=616695908]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ml1an")
+
+[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Holdtoblowwind/Keys/KeyRightShift" unique_id=287099481]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Right Shift"
+
+[node name="Action" type="Label" parent="Screen/Cards/SqueakCard/Rows/Holdtoblowwind" unique_id=1926122629]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Hold to blow wind"
+
+[node name="Use_pickup_throw" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows" unique_id=1415776768]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows/Use_pickup_throw" unique_id=240437121]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyEnter" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Use_pickup_throw/Keys" unique_id=275759598]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_plax6")
+
+[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Use_pickup_throw/Keys/KeyEnter" unique_id=1797240408]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Enter"
+
+[node name="Action" type="Label" parent="Screen/Cards/SqueakCard/Rows/Use_pickup_throw" unique_id=876292014]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Use / pick up / throw"
+
+[node name="Holdtograbacube" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows" unique_id=1524132143]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube" unique_id=962987320]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyRightmouse" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube/Keys" unique_id=1054340217]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sse2a")
+
+[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube/Keys/KeyRightmouse" unique_id=397326484]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Right mouse"
+
+[node name="Action" type="Label" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube" unique_id=1501112919]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Hold to grab a cube"
+
+[node name="TabTag" type="PanelContainer" parent="Screen" unique_id=940457727]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 10.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gt5j1")
+
+[node name="Row" type="HBoxContainer" parent="Screen/TabTag" unique_id=1711808319]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="KeyTab" type="PanelContainer" parent="Screen/TabTag/Row" unique_id=2011261049]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xrj7m")
+
+[node name="Label" type="Label" parent="Screen/TabTag/Row/KeyTab" unique_id=1101348446]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Tab"
+
+[node name="Label" type="Label" parent="Screen/TabTag/Row" unique_id=145913905]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+text = "Controls"

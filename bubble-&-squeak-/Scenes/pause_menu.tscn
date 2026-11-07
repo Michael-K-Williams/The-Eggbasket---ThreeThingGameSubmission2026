@@ -2,5 +2,931 @@
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_pause"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emv3i"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.9, 1, 0.35)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0w1u"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.2, 0.32, 0.45, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1och7"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpi0q"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmyb1"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.9, 1, 0.35)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myy0f"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.2, 0.32, 0.45, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjs17"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8tnp"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stj27"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.9, 1, 0.35)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix48p"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.2, 0.32, 0.45, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_524vl"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fi7f"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uscpe"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.9, 1, 0.35)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_taale"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.2, 0.32, 0.45, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7fiq"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wqnn"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.17, 0.24, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.85, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ymcx"]
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.85)
+border_width_left = 4
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.6, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ojb"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqpeb"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tekra"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8flw2"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8xnj"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5ant"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg368"]
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.07, 0.09, 0.13, 0.85)
+border_width_left = 4
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.3, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqvcn"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gov1"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv8gj"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1o4n"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pt54"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfd3j"]
+content_margin_left = 6.0
+content_margin_top = 1.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.93, 0.94, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.55, 0.58, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=617273667]
 script = ExtResource("1_pause")
+
+[node name="Overlay" type="Control" parent="." unique_id=1487157889]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim" type="ColorRect" parent="Overlay" unique_id=569438716]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.03, 0.06, 0.6)
+
+[node name="Centre" type="CenterContainer" parent="Overlay" unique_id=510636086]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Column" type="VBoxContainer" parent="Overlay/Centre" unique_id=1250146138]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Heading" type="Label" parent="Overlay/Centre/Column" unique_id=1111686569]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 6
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Overlay/Centre/Column" unique_id=1204657656]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="Resume" type="Button" parent="Overlay/Centre/Column/Buttons" unique_id=638158363]
+custom_minimum_size = Vector2(240, 46)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_emv3i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k0w1u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1och7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bpi0q")
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Resume"
+
+[node name="Restart" type="Button" parent="Overlay/Centre/Column/Buttons" unique_id=427327221]
+custom_minimum_size = Vector2(240, 46)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_vmyb1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_myy0f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sjs17")
+theme_override_styles/focus = SubResource("StyleBoxFlat_u8tnp")
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Restart level"
+
+[node name="MainMenu" type="Button" parent="Overlay/Centre/Column/Buttons" unique_id=74556356]
+custom_minimum_size = Vector2(240, 46)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_stj27")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ix48p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_524vl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0fi7f")
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Main menu"
+
+[node name="Quit" type="Button" parent="Overlay/Centre/Column/Buttons" unique_id=1833185557]
+custom_minimum_size = Vector2(240, 46)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_uscpe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_taale")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7fiq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_6wqnn")
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
+[node name="Gap" type="Control" parent="Overlay/Centre/Column" unique_id=1233279491]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Cards" type="HBoxContainer" parent="Overlay/Centre/Column" unique_id=1246509425]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="BubbleCard" type="PanelContainer" parent="Overlay/Centre/Column/Cards" unique_id=624081920]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ymcx")
+
+[node name="Rows" type="VBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard" unique_id=1260429419]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="Heading" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=844574312]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Heading" unique_id=78489113]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(0.3, 0.6, 1, 1)
+text = "Bubble"
+
+[node name="Subtitle" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Heading" unique_id=1136082623]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.8, 0.88, 1)
+text = "Player 1 · the yeti"
+
+[node name="Move" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=1139091490]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Move" unique_id=651769737]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyA" type="PanelContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Move/Keys" unique_id=1413297487]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ojb")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Move/Keys/KeyA" unique_id=856284633]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "A"
+
+[node name="KeyD" type="PanelContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Move/Keys" unique_id=2056121633]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wqpeb")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Move/Keys/KeyD" unique_id=515516695]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "D"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Move" unique_id=1258724383]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Move"
+
+[node name="Jump" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=14311648]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Jump" unique_id=110200862]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyW" type="PanelContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Jump/Keys" unique_id=10298072]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tekra")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Jump/Keys/KeyW" unique_id=1376389063]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "W"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Jump" unique_id=595678981]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Jump"
+
+[node name="Blowabubble" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=550140983]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Blowabubble" unique_id=152915630]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyQ" type="PanelContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Blowabubble/Keys" unique_id=355462807]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8flw2")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Blowabubble/Keys/KeyQ" unique_id=1540050447]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Q"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Blowabubble" unique_id=1320072837]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Blow a bubble"
+
+[node name="Use_pickup_throw" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=1899750905]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Use_pickup_throw" unique_id=1222937971]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyF" type="PanelContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Use_pickup_throw/Keys" unique_id=836652653]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8xnj")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Use_pickup_throw/Keys/KeyF" unique_id=2045726148]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "F"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Use_pickup_throw" unique_id=1850120887]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Use / pick up / throw"
+
+[node name="Holdtograbacube" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=2016053179]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube" unique_id=1567140427]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyLeftmouse" type="PanelContainer" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube/Keys" unique_id=389396612]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m5ant")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube/Keys/KeyLeftmouse" unique_id=1454768593]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Left mouse"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube" unique_id=1832586522]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Hold to grab a cube"
+
+[node name="SqueakCard" type="PanelContainer" parent="Overlay/Centre/Column/Cards" unique_id=2014836680]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kg368")
+
+[node name="Rows" type="VBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard" unique_id=1454585641]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="Heading" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=1491642365]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Heading" unique_id=1421243409]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+text = "Squeak"
+
+[node name="Subtitle" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Heading" unique_id=463090042]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.8, 0.88, 1)
+text = "Player 2 · the mouse"
+
+[node name="Move" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=688927256]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Move" unique_id=962664668]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyLeft" type="PanelContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Move/Keys" unique_id=2023669235]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pqvcn")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Move/Keys/KeyLeft" unique_id=990162687]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Left"
+
+[node name="KeyRight" type="PanelContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Move/Keys" unique_id=1604852798]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1gov1")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Move/Keys/KeyRight" unique_id=732306474]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Right"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Move" unique_id=1317426741]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Move"
+
+[node name="Jump" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=1061396708]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Jump" unique_id=67490196]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyUp" type="PanelContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Jump/Keys" unique_id=417410198]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uv8gj")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Jump/Keys/KeyUp" unique_id=1604741832]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Up"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Jump" unique_id=2061848218]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Jump"
+
+[node name="Holdtoblowwind" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=1874416513]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtoblowwind" unique_id=1445420444]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyRightShift" type="PanelContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtoblowwind/Keys" unique_id=1896140220]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d1o4n")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtoblowwind/Keys/KeyRightShift" unique_id=1147436131]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Right Shift"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtoblowwind" unique_id=193157125]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Hold to blow wind"
+
+[node name="Use_pickup_throw" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=705274490]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Use_pickup_throw" unique_id=557993502]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyEnter" type="PanelContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Use_pickup_throw/Keys" unique_id=1540319367]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8pt54")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Use_pickup_throw/Keys/KeyEnter" unique_id=886251544]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Enter"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Use_pickup_throw" unique_id=2106016948]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Use / pick up / throw"
+
+[node name="Holdtograbacube" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=399701125]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Keys" type="HBoxContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube" unique_id=2072541836]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="KeyRightmouse" type="PanelContainer" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube/Keys" unique_id=1360043590]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tfd3j")
+
+[node name="Label" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube/Keys/KeyRightmouse" unique_id=137126990]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+text = "Right mouse"
+
+[node name="Action" type="Label" parent="Overlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube" unique_id=802797279]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+text = "Hold to grab a cube"
+
+[node name="EscHint" type="Label" parent="Overlay/Centre/Column" unique_id=1384178296]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.75, 0.8, 0.88, 1)
+text = "Esc to resume"
+horizontal_alignment = 1

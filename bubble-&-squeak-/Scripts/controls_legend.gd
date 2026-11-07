@@ -41,33 +41,54 @@ func _ready() -> void:
 	add_to_group("controls_legend")
 	process_mode = Node.PROCESS_MODE_ALWAYS   # so it can fade out while the game's paused
 
+	# the layout is saved in the scene so it can be edited in Godot, build() only
+	# runs if it's missing
+	if not has_node("Screen"):
+		build()
+	_cards = $Screen/Cards
+	_reminder = $Screen/TabTag
+	_cards.modulate.a = 0.0
+	_reminder.modulate.a = 0.0
+
+	_set_open(true)
+	_schedule_hide()
+
+
+# lays the legend out. Used to make the saved scene, and as a fallback
+func build() -> void:
 	var screen := Control.new()
+	screen.name = "Screen"
 	screen.set_anchors_preset(Control.PRESET_FULL_RECT)
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(screen)
 
-	_cards = HBoxContainer.new()
-	_cards.set_anchors_preset(Control.PRESET_TOP_WIDE)
-	_cards.offset_left = 16
-	_cards.offset_right = -16
-	_cards.offset_top = 14
-	_cards.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	screen.add_child(_cards)
-	_cards.add_child(card("Bubble", ControlsLegend.P1_SUB, BUBBLE_COL, P1_ROWS))
+	var cards := HBoxContainer.new()
+	cards.name = "Cards"
+	cards.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	cards.offset_left = 16
+	cards.offset_right = -16
+	cards.offset_top = 14
+	cards.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	screen.add_child(cards)
+	cards.add_child(card("Bubble", ControlsLegend.P1_SUB, BUBBLE_COL, P1_ROWS))
 	var spacer := Control.new()
+	spacer.name = "Spacer"
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_cards.add_child(spacer)
-	_cards.add_child(card("Squeak", ControlsLegend.P2_SUB, SQUEAK_COL, P2_ROWS))
-	_cards.modulate.a = 0.0
+	cards.add_child(spacer)
+	cards.add_child(card("Squeak", ControlsLegend.P2_SUB, SQUEAK_COL, P2_ROWS))
 
 	# small "Tab  Controls" tag, top middle, shown while the cards are hidden
 	var tag := HBoxContainer.new()
+	tag.name = "Row"
 	tag.add_theme_constant_override("separation", 6)
 	tag.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	tag.add_child(key("Tab"))
-	tag.add_child(text("Controls", 13, Color(0.95, 0.97, 1.0)))
+	var lbl := text("Controls", 13, Color(0.95, 0.97, 1.0))
+	lbl.name = "Label"
+	tag.add_child(lbl)
 	var tag_box := PanelContainer.new()
+	tag_box.name = "TabTag"
 	tag_box.add_theme_stylebox_override("panel", Hint.box_style())
 	tag_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	tag_box.add_child(tag)
@@ -75,11 +96,6 @@ func _ready() -> void:
 	tag_box.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	tag_box.offset_top = 10
 	screen.add_child(tag_box)
-	_reminder = tag_box
-	_reminder.modulate.a = 0.0
-
-	_set_open(true)
-	_schedule_hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -145,35 +161,45 @@ static func card(title: String, subtitle: String, colour: Color, rows: Array) ->
 	sb.border_width_left = 4
 	sb.content_margin_left = 14
 	var card := PanelContainer.new()
+	card.name = title + "Card"
 	card.add_theme_stylebox_override("panel", sb)
 	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var col := VBoxContainer.new()
+	col.name = "Rows"
 	col.add_theme_constant_override("separation", 5)
 	col.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	card.add_child(col)
 
 	var head := HBoxContainer.new()
+	head.name = "Heading"
 	head.add_theme_constant_override("separation", 8)
 	head.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	head.add_child(text(title, 17, colour))
+	var t := text(title, 17, colour)
+	t.name = "Name"
+	head.add_child(t)
 	var sub := text(subtitle, 12, Color(0.75, 0.8, 0.88))
+	sub.name = "Subtitle"
 	sub.size_flags_vertical = Control.SIZE_SHRINK_END
 	head.add_child(sub)
 	col.add_child(head)
 
 	for row in rows:
 		var line := HBoxContainer.new()
+		line.name = String(row[1]).validate_node_name().replace(" ", "")
 		line.add_theme_constant_override("separation", 8)
 		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		var keys := HBoxContainer.new()
+		keys.name = "Keys"
 		keys.add_theme_constant_override("separation", 4)
 		keys.custom_minimum_size.x = 104   # lines the action names up in a column
 		keys.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		for k in row[0]:
 			keys.add_child(key(k))
 		line.add_child(keys)
-		line.add_child(text(row[1], 13, Color(0.92, 0.94, 0.98)))
+		var action := text(row[1], 13, Color(0.92, 0.94, 0.98))
+		action.name = "Action"
+		line.add_child(action)
 		col.add_child(line)
 	return card
 
@@ -190,15 +216,19 @@ static func key(name: String) -> Control:
 	sb.content_margin_top = 1
 	sb.content_margin_bottom = 2
 	var cap := PanelContainer.new()
+	cap.name = ("Key" + name).validate_node_name().replace(" ", "")
 	cap.add_theme_stylebox_override("panel", sb)
 	cap.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	cap.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	cap.add_child(text(name, 12, Color(0.12, 0.13, 0.17)))
+	var l := text(name, 12, Color(0.12, 0.13, 0.17))
+	l.name = "Label"
+	cap.add_child(l)
 	return cap
 
 
 static func text(s: String, size: int, colour: Color) -> Label:
 	var l := Label.new()
+	l.name = "Text"
 	l.text = s
 	l.add_theme_font_size_override("font_size", size)
 	l.add_theme_color_override("font_color", colour)
