@@ -20,6 +20,10 @@ signal released
 		queue_redraw()
 @export var stays_pressed: bool = false   # once pressed, stays down for good
 @export var counts_props: bool = true     # whether a thrown rock is heavy enough
+@export var counts_players: bool = true:  # off = a heavy switch, only a cube (or prop) will do
+	set(v):
+		counts_players = v
+		queue_redraw()
 
 var is_pressed := false
 
@@ -58,7 +62,7 @@ func _something_on_it() -> bool:
 	for body in get_overlapping_bodies():
 		var yeti := body as Yeti
 		if yeti != null:
-			if not yeti.is_bubbled and not yeti.in_cave:
+			if counts_players and not yeti.is_bubbled and not yeti.in_cave:
 				return true
 			continue
 		if body is PushableCube:
@@ -89,11 +93,21 @@ func _draw() -> void:
 	# placeholder look, sits flush with the floor when pressed
 	var h := size.y * (0.35 if is_pressed else 1.0)
 	var top := size.y / 2.0 - h
-	draw_rect(Rect2(-size.x / 2.0, top, size.x, h), Color(0.85, 0.65, 0.2) if is_pressed else Color(0.9, 0.35, 0.25))
+	var col := Color(0.85, 0.65, 0.2) if is_pressed else Color(0.9, 0.35, 0.25)
+	if not counts_players:
+		# heavy switch: steel with hazard stripes, so it reads as "needs something heavy"
+		col = Color(0.62, 0.66, 0.72) if is_pressed else Color(0.5, 0.54, 0.6)
+	draw_rect(Rect2(-size.x / 2.0, top, size.x, h), col)
+	if not counts_players:
+		var x := -size.x / 2.0 + 4.0
+		while x < size.x / 2.0 - 4.0:
+			draw_line(Vector2(x, top + h), Vector2(x + 6.0, top), Color(0.95, 0.8, 0.2, 0.9), 2.0)
+			x += 10.0
 	draw_rect(Rect2(-size.x / 2.0, top, size.x, h), Color(0.25, 0.2, 0.15), false, 2.0)
 	if Engine.is_editor_hint():
 		for path in targets:
 			var t := get_node_or_null(path) as Node2D
 			if t:
 				draw_dashed_line(Vector2.ZERO, to_local(t.global_position), Color(1.0, 0.85, 0.3, 0.8), 1.5, 6.0)
-		EditorDraw.label(self, Vector2(0, -14), "switch (stays down)" if stays_pressed else "switch")
+		var kind := "heavy switch (cubes only)" if not counts_players else "switch"
+		EditorDraw.label(self, Vector2(0, -14), kind + (" (stays down)" if stays_pressed else ""))

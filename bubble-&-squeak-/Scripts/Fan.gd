@@ -19,6 +19,7 @@ extends StaticBody2D
 		tunnel_size = v
 		queue_redraw()
 @export var wind_strength := 700.0
+@export var starts_on: bool = true   # a plate pointed at the fan flips it while held
 
 
 # editor preview only, in game the fan builds real nodes in _ready
@@ -58,9 +59,41 @@ func _ready() -> void:
 	body.color = Color(0.35, 0.42, 0.55)
 	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(body)
+	_body = body
 
 	var zone := WindZone.new()
 	zone.size = tunnel_size
 	zone.strength = wind_strength
 	zone.position = Vector2(0, -(fan_size.y / 2.0 + tunnel_size.y / 2.0))
 	add_child(zone)
+	_zone = zone
+	_set_running(starts_on)
+
+
+# ---------- switching it with pressure plates ----------
+# Put the fan in a plate's targets. Held down = the fan does the opposite of
+# starts_on, so a plate can switch a fan off (or on) while something's on it.
+
+var _zone: WindZone
+var _body: ColorRect
+var _held_by: Array[Node] = []
+var running := true
+
+
+func plate_pressed(plate: Node) -> void:
+	if not _held_by.has(plate):
+		_held_by.append(plate)
+	_set_running(starts_on == _held_by.is_empty())
+
+
+func plate_released(plate: Node) -> void:
+	_held_by.erase(plate)
+	_set_running(starts_on == _held_by.is_empty())
+
+
+func _set_running(on: bool) -> void:
+	running = on
+	if _zone:
+		_zone.set_active(on)
+	if _body:
+		_body.color = Color(0.35, 0.42, 0.55) if on else Color(0.22, 0.24, 0.3)
