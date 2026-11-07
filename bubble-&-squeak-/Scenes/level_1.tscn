@@ -1,0 +1,153 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/clouds.png" id="1_yltlr"]
+[ext_resource type="Texture2D" path="res://sprites/back.png" id="2_6ssoq"]
+[ext_resource type="Texture2D" path="res://sprites/middle.png" id="3_imks0"]
+[ext_resource type="Texture2D" path="res://sprites/front.png" id="4_dlmop"]
+[ext_resource type="PackedScene" path="res://Scenes/Arrival Cave.tscn" id="5_sda17"]
+[ext_resource type="Script" path="res://Scripts/cave_exit.gd" id="6_1fal7"]
+[ext_resource type="PackedScene" path="res://Scenes/player_bubble.tscn" id="7_gcla0"]
+[ext_resource type="Script" path="res://Scripts/bubble_yeti.gd" id="8_vr6f4"]
+[ext_resource type="PackedScene" path="res://Scenes/player_wind.tscn" id="9_u5cqy"]
+[ext_resource type="Script" path="res://Scripts/wind_yeti.gd" id="10_u0op5"]
+[ext_resource type="PackedScene" path="res://Scenes/fan.tscn" id="11_1f27d"]
+[ext_resource type="Script" path="res://Scripts/Fan.gd" id="12_pm77i"]
+[ext_resource type="PackedScene" path="res://Scenes/door.tscn" id="13_xub2v"]
+[ext_resource type="Script" path="res://Scripts/door.gd" id="14_x5u8r"]
+[ext_resource type="PackedScene" path="res://Scenes/pressure_plate.tscn" id="15_nwpk5"]
+[ext_resource type="Script" path="res://Scripts/pressure_plate.gd" id="16_lk3dh"]
+[ext_resource type="PackedScene" path="res://Scenes/exit_cave.tscn" id="17_ts4pv"]
+[ext_resource type="Script" path="res://Scripts/cave_entrance.gd" id="18_7sml1"]
+[ext_resource type="TileSet" path="res://TilesetTest.tres" id="19_bd6hb"]
+
+[node name="Level1" type="Node2D" unique_id=1221996854]
+
+[node name="Parallax_clouds" type="Parallax2D" parent="." unique_id=1593277746]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_clouds" unique_id=1442233020]
+z_index = -10
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_yltlr")
+
+[node name="Parallax_back" type="Parallax2D" parent="." unique_id=1101059258]
+scroll_scale = Vector2(0.25, 0.25)
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_back" unique_id=423301779]
+z_index = -9
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("2_6ssoq")
+
+[node name="Parallax_middle" type="Parallax2D" parent="." unique_id=1317315765]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_middle" unique_id=1713320231]
+z_index = -8
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("3_imks0")
+
+[node name="Parallax_front" type="Parallax2D" parent="." unique_id=1917782478]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_front" unique_id=528936068]
+z_index = -7
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("4_dlmop")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1215988589]
+position = Vector2(512, 288)
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+limit_bottom = 576
+
+[node name="ArrivalCave" type="Node2D" parent="." unique_id=563540888 instance=ExtResource("5_sda17")]
+position = Vector2(112, 440)
+script = ExtResource("6_1fal7")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2052152642 instance=ExtResource("7_gcla0")]
+position = Vector2(90, 448)
+disable_mode = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("8_vr6f4")
+
+[node name="Player2" type="CharacterBody2D" parent="." unique_id=239417787 instance=ExtResource("9_u5cqy")]
+position = Vector2(140, 448)
+disable_mode = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("10_u0op5")
+player_id = 2
+
+[node name="Fan" type="StaticBody2D" parent="." unique_id=2075705095 instance=ExtResource("11_1f27d")]
+position = Vector2(592, 473)
+script = ExtResource("12_pm77i")
+
+[node name="ExitDoor" type="StaticBody2D" parent="." unique_id=1860752633 instance=ExtResource("13_xub2v")]
+z_index = -1
+position = Vector2(624, 384)
+script = ExtResource("14_x5u8r")
+size = Vector2(32, 192)
+stays_open = true
+open_offset = Vector2(0, 192)
+
+[node name="Switch" type="Area2D" parent="." unique_id=1335643879 instance=ExtResource("15_nwpk5")]
+position = Vector2(752, 219)
+script = ExtResource("16_lk3dh")
+targets = Array[NodePath]([NodePath("../ExitDoor")])
+stays_pressed = true
+
+[node name="ExitCave" type="Area2D" parent="." unique_id=1124004171 instance=ExtResource("17_ts4pv")]
+position = Vector2(816, 440)
+script = ExtResource("18_7sml1")
+next_level_path = "res://Scenes/level_2.tscn"
+
+[node name="Controls" type="Label" parent="." unique_id=1504026751]
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.1, 0.1, 0.15, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+text = "BUBBLE (P1):  A / D move   W jump   Q blow bubble   F use   Left mouse grab
+WIND (P2):  Arrows move   Up jump   Right Shift hold for wind   Enter use   Right mouse grab"
+
+[node name="Hint" type="Label" parent="." unique_id=1848105536]
+offset_left = 260.0
+offset_top = 300.0
+offset_right = 260.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.1, 0.1, 0.15, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+text = "Blow a bubble on your friend while they stand on the fan.
+Press a direction to pop it."
+
+[node name="ExitHint" type="Label" parent="." unique_id=1103821259]
+offset_left = 700.0
+offset_top = 330.0
+offset_right = 700.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.1, 0.1, 0.15, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+text = "Both of you stand
+in the cave and press use"
+
+[node name="TileMap" type="TileMap" parent="." unique_id=447028919]
+tile_set = ExtResource("19_bd6hb")
+format = 2
+layer_0/tile_data = PackedInt32Array(983040, 393216, 1, 1048576, 393216, 1, 1114112, 393216, 1, 983041, 0, 0, 1048577, 393216, 1, 1114113, 393216, 1, 983042, 0, 0, 1048578, 393216, 1, 1114114, 393216, 1, 983043, 0, 0, 1048579, 393216, 1, 1114115, 393216, 1, 983044, 0, 0, 1048580, 393216, 1, 1114116, 393216, 1, 983045, 0, 0, 1048581, 393216, 1, 1114117, 393216, 1, 983046, 0, 0, 1048582, 393216, 1, 1114118, 393216, 1, 983047, 0, 0, 1048583, 393216, 1, 1114119, 393216, 1, 983048, 0, 0, 1048584, 393216, 1, 1114120, 393216, 1, 983049, 0, 0, 1048585, 393216, 1, 1114121, 393216, 1, 983050, 0, 0, 1048586, 393216, 1, 1114122, 393216, 1, 983051, 0, 0, 1048587, 393216, 1, 1114123, 393216, 1, 983052, 0, 0, 1048588, 393216, 1, 1114124, 393216, 1, 983053, 0, 0, 1048589, 393216, 1, 1114125, 393216, 1, 983054, 0, 0, 1048590, 393216, 1, 1114126, 393216, 1, 983055, 0, 0, 1048591, 393216, 1, 1114127, 393216, 1, 983056, 0, 0, 1048592, 393216, 1, 1114128, 393216, 1, 983057, 0, 0, 1048593, 393216, 1, 1114129, 393216, 1, 983058, 0, 0, 1048594, 393216, 1, 1114130, 393216, 1, 983059, 0, 0, 1048595, 393216, 1, 1114131, 393216, 1, 983060, 0, 0, 1048596, 393216, 1, 1114132, 393216, 1, 983061, 0, 0, 1048597, 393216, 1, 1114133, 393216, 1, 983062, 0, 0, 1048598, 393216, 1, 1114134, 393216, 1, 983063, 0, 0, 1048599, 393216, 1, 1114135, 393216, 1, 983064, 0, 0, 1048600, 393216, 1, 1114136, 393216, 1, 983065, 0, 0, 1048601, 393216, 1, 1114137, 393216, 1, 983066, 0, 0, 1048602, 393216, 1, 1114138, 393216, 1, 983067, 0, 0, 1048603, 393216, 1, 1114139, 393216, 1, 983068, 0, 0, 1048604, 393216, 1, 1114140, 393216, 1, 983069, 0, 0, 1048605, 393216, 1, 1114141, 393216, 1, 983070, 0, 0, 1048606, 393216, 1, 1114142, 393216, 1, 983071, 393216, 1, 1048607, 393216, 1, 1114143, 393216, 1, 0, 0, 0, 65536, 393216, 1, 131072, 393216, 1, 196608, 393216, 1, 262144, 393216, 1, 327680, 393216, 1, 393216, 393216, 1, 458752, 393216, 1, 524288, 393216, 1, 589824, 393216, 1, 655360, 393216, 1, 720896, 393216, 1, 786432, 393216, 1, 851968, 393216, 1, 917504, 393216, 1, 31, 0, 0, 65567, 393216, 1, 131103, 393216, 1, 196639, 393216, 1, 262175, 393216, 1, 327711, 393216, 1, 393247, 393216, 1, 458783, 393216, 1, 524319, 393216, 1, 589855, 393216, 1, 655391, 393216, 1, 720927, 393216, 1, 786463, 393216, 1, 851999, 393216, 1, 917535, 393216, 1, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 458772, 0, 0, 524308, 393216, 1, 458773, 0, 0, 524309, 393216, 1, 458774, 0, 0, 524310, 393216, 1, 458775, 0, 0, 524311, 393216, 1, 458776, 0, 0, 524312, 393216, 1, 458777, 0, 0, 524313, 393216, 1, 458778, 0, 0, 524314, 393216, 1, 458779, 0, 0, 524315, 393216, 1, 458780, 0, 0, 524316, 393216, 1)
