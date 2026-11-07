@@ -28,12 +28,33 @@ func try_grab(player: Node2D) -> bool:
 		return false  
 	grabbed_by = player
 	_offset_x = global_position.x - player.global_position.x
+	# the holder and the cube ignore each other while grabbed, otherwise pushing
+	# deadlocks: the yeti can't shove a rigid body and the cube only follows the yeti
+	_set_ignore(player, true)
 	return true
 
 
 func release(player: Node2D) -> void:
 	if grabbed_by == player:
-		grabbed_by = null
+		_drop()
+
+
+func _drop() -> void:
+	if grabbed_by != null:
+		_set_ignore(grabbed_by, false)
+	grabbed_by = null
+
+
+func _set_ignore(player: Node2D, on: bool) -> void:
+	var body := player as PhysicsBody2D
+	if body == null:
+		return
+	if on:
+		add_collision_exception_with(body)
+		body.add_collision_exception_with(self)
+	else:
+		remove_collision_exception_with(body)
+		body.remove_collision_exception_with(self)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -44,7 +65,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		var error := target_x - state.transform.origin.x
 
 		if absf(error) > max_drag_distance:
-			grabbed_by = null
+			call_deferred("_drop")   # can't change exceptions mid physics step
+			v.x = 0.0
 		else:
 			v.x = clampf(error / state.step, -grab_speed * 1.5, grab_speed * 1.5)
 	
