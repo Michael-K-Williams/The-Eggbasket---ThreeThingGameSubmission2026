@@ -19,14 +19,14 @@ const P1_ROWS := [
 	[["W"], "Jump"],
 	[["Q"], "Blow a bubble"],
 	[["F"], "Use / pick up / throw"],
-	[["Left mouse"], "Hold to grab a cube"],
+	[["E"], "Hold to grab a cube"],
 ]
 const P2_ROWS := [
 	[["Left", "Right"], "Move"],
 	[["Up"], "Jump"],
 	[["Right Shift"], "Hold to blow wind"],
 	[["Enter"], "Use / pick up / throw"],
-	[["Right mouse"], "Hold to grab a cube"],
+	[["Right Ctrl"], "Hold to grab a cube"],
 ]
 
 var _cards: Control

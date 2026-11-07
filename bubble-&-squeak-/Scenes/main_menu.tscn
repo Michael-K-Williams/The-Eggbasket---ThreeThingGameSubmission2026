@@ -830,17 +830,17 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="KeyLeftmouse" type="PanelContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube/Keys" unique_id=912830601]
+[node name="KeyE" type="PanelContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube/Keys" unique_id=912830601]
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ne6ao")
 
-[node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube/Keys/KeyLeftmouse" unique_id=1539589111]
+[node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube/Keys/KeyE" unique_id=1539589111]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
 theme_override_font_sizes/font_size = 12
-text = "Left mouse"
+text = "E"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube" unique_id=41594854]
 layout_mode = 2
@@ -1015,17 +1015,17 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="KeyRightmouse" type="PanelContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube/Keys" unique_id=1246982314]
+[node name="KeyRightCtrl" type="PanelContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube/Keys" unique_id=1246982314]
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1xund")
 
-[node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube/Keys/KeyRightmouse" unique_id=900034594]
+[node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube/Keys/KeyRightCtrl" unique_id=900034594]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
 theme_override_font_sizes/font_size = 12
-text = "Right mouse"
+text = "Right Ctrl"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube" unique_id=1989531222]
 layout_mode = 2

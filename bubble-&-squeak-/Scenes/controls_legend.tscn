@@ -410,17 +410,17 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="KeyLeftmouse" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube/Keys" unique_id=1201155640]
+[node name="KeyE" type="PanelContainer" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube/Keys" unique_id=1201155640]
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n53pd")
 
-[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube/Keys/KeyLeftmouse" unique_id=1276840868]
+[node name="Label" type="Label" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube/Keys/KeyE" unique_id=1276840868]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
-text = "Left mouse"
+text = "E"
 
 [node name="Action" type="Label" parent="Screen/Cards/BubbleCard/Rows/Holdtograbacube" unique_id=215873887]
 layout_mode = 2
@@ -600,17 +600,17 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="KeyRightmouse" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube/Keys" unique_id=1054340217]
+[node name="KeyRightCtrl" type="PanelContainer" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube/Keys" unique_id=1054340217]
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sse2a")
 
-[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube/Keys/KeyRightmouse" unique_id=397326484]
+[node name="Label" type="Label" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube/Keys/KeyRightCtrl" unique_id=397326484]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
-text = "Right mouse"
+text = "Right Ctrl"
 
 [node name="Action" type="Label" parent="Screen/Cards/SqueakCard/Rows/Holdtograbacube" unique_id=1501112919]
 layout_mode = 2
