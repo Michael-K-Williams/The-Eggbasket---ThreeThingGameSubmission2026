@@ -44,7 +44,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if yeti.is_bubbled or yeti.was_in_bubble:
 		return
 	yeti.set_bubbled(true)
-	queue_free()  # the bubble is absorbed
+	queue_free()  
 
 
 # called by WindZone
