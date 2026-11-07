@@ -116,9 +116,12 @@ position = Vector2(864, 475)
 targets = Array[NodePath]([NodePath("../ExitDoor")])
 
 [node name="ExitDoor" parent="." unique_id=947431786 instance=ExtResource("12_f8et3")]
-position = Vector2(912, 432)
+z_index = -1
+position = Vector2(912, 256)
+size = Vector2(32, 448)
 plates_needed = 2
 stays_open = true
+open_offset = Vector2(0, 448)
 
 [node name="ExitCave" parent="." unique_id=1124004171 instance=ExtResource("16_5l2vs")]
 position = Vector2(960, 440)
