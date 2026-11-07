@@ -1,8 +1,11 @@
+# A fan you place in a level (Scenes/fan.tscn). Blows all the time in
+# wind_direction. Set the direction in the inspector rather than rotating the
+# node, the script sets the rotation itself.
 class_name Fan
 extends StaticBody2D
 
 @export var fan_size := Vector2(40, 14)
-@export var wind_direction := Vector2.ZERO
+@export var wind_direction := Vector2.UP
 @export var tunnel_size := Vector2(48, 220)
 @export var wind_strength := 700.0
 

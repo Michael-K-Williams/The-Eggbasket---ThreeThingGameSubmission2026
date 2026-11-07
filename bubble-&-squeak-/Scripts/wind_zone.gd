@@ -9,6 +9,9 @@ uniform float speed = 1.4;
 uniform float streak_density = 6.0;
 uniform float streak_stretch = 0.25;
 uniform float intensity = 0.6;
+// how wide the wind is where it starts, as a fraction of the full width.
+// 1.0 = a straight strip (fans), smaller = narrow at the source and spreading out
+uniform float source_width = 1.0;
 
 float hash(vec2 p) {
 	p = fract(p * vec2(123.34, 456.21));
@@ -32,10 +35,18 @@ void fragment() {
 	float n = vnoise(p) * 0.65 + vnoise(p * 2.1 + 7.3) * 0.35;
 	float streaks = smoothstep(0.45, 0.85, n);
 
-	float side_fade = smoothstep(0.0, 0.2, UV.x) * smoothstep(1.0, 0.8, UV.x);
-	float far_fade = smoothstep(0.0, 0.4, UV.y);
+	// wind blows towards UV.y = 0, so the source end is UV.y = 1
+	float along = 1.0 - UV.y;
+	float half_w = 0.5 * mix(source_width, 1.0, smoothstep(0.0, 0.35, along));
+	// wobble the edges with drifting noise so it doesn't read as a straight-sided box
+	float wobble = (vnoise(vec2(UV.y * 4.0 - TIME * speed * 0.5, 3.1)) - 0.5) * 0.14;
+	float d = abs(UV.x - 0.5 + wobble);
+	float side_fade = 1.0 - smoothstep(half_w * 0.2, half_w, d);
+	// thins out over the back half and is gone by the far end
+	float end_fade = 1.0 - smoothstep(0.4, 1.0, along);
+	float near_fade = smoothstep(0.0, 0.06, along);
 
-	float alpha = (streaks + 0.08) * side_fade * far_fade * intensity;
+	float alpha = (streaks + 0.06) * side_fade * end_fade * end_fade * near_fade * intensity;
 	COLOR = vec4(wind_color.rgb, alpha);
 }
 """
@@ -44,6 +55,8 @@ void fragment() {
 @export var strength: float = 700.0
 @export var tint := Color(0.75, 0.92, 1.0, 1.0)
 @export_flags_2d_physics var affects_mask: int = 2 | 4 | 8
+@export_range(0.0, 1.0) var source_width: float = 1.0   # see the shader, 1.0 for fans
+var exclude: Node = null   # never blows this one (the wind yeti, since its gust starts inside it)
 
 
 func _ready() -> void:
@@ -62,6 +75,7 @@ func _ready() -> void:
 	var mat := ShaderMaterial.new()
 	mat.shader = shader
 	mat.set_shader_parameter("wind_color", tint)
+	mat.set_shader_parameter("source_width", source_width)
 
 	var rect := ColorRect.new()
 	rect.size = size
@@ -74,6 +88,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var dir := Vector2.UP.rotated(global_rotation)
 	for body in get_overlapping_bodies():
+		if body == exclude:
+			continue
 		if body.has_method("apply_wind"):
 			body.apply_wind(dir, strength)
 	for area in get_overlapping_areas():
