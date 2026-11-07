@@ -122,7 +122,7 @@ stays_open = true
 
 [node name="ExitCave" parent="." unique_id=1124004171 instance=ExtResource("16_5l2vs")]
 position = Vector2(960, 440)
-next_level_path = "res://Scenes/main_menu.tscn"
+next_level_path = "res://Scenes/level_4.tscn"
 
 [node name="LevelTitle" parent="." unique_id=1544823458 instance=ExtResource("18_r5kqc")]
 number = "Level 3"
