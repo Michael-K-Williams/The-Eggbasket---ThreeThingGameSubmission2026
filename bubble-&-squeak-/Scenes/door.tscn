@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://drh8ml2w32e2l"]
 
 [ext_resource type="Script" path="res://Scripts/door.gd" id="1_door"]
 

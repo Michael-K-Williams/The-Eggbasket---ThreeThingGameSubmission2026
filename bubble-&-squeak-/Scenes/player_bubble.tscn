@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cxtpnqofjq78t"]
 
-[ext_resource type="PackedScene" uid="uid://bn60vt6u4pnmg" path="res://Scenes/player.tscn" id="1_base"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_base"]
 [ext_resource type="Script" path="res://Scripts/bubble_yeti.gd" id="2_script"]
 [ext_resource type="Texture2D" path="res://sprites/characters/Bubble.png" id="3_sprite"]
 
@@ -10,12 +10,12 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_sprite")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="PlayerBubble" unique_id=0 instance=ExtResource("1_base")]
+[node name="PlayerBubble" instance=ExtResource("1_base")]
 collision_layer = 2
 script = ExtResource("2_script")
 player_id = 1

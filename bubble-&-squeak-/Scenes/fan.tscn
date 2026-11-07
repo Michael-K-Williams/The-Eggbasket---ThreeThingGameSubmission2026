@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ct1bdpivjpj7h"]
 
 [ext_resource type="Script" path="res://Scripts/Fan.gd" id="1_fan"]
 

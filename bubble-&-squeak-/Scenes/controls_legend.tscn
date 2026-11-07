@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://disxr4obqq8jl"]
 
 [ext_resource type="Script" path="res://Scripts/controls_legend.gd" id="1_legend"]
 

@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c13dyah61ynfh"]
 
 [ext_resource type="Texture2D" path="res://sprites/clouds.png" id="1_2awvy"]
 [ext_resource type="Texture2D" path="res://sprites/back.png" id="2_nrv0r"]

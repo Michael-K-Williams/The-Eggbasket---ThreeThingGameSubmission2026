@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bp5kw5pur8vfw"]
 
 [ext_resource type="Script" path="res://Scripts/pressure_plate.gd" id="1_plate"]
 

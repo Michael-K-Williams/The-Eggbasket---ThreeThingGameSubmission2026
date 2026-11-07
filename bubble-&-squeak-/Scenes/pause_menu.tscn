@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cmwo2rql3akni"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_pause"]
 
