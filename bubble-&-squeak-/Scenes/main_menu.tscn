@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d2e6bh055l32g"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_menu"]
-[ext_resource type="Texture2D" path="res://sprites/clouds.png" id="2_n45e2"]
-[ext_resource type="Texture2D" path="res://sprites/back.png" id="3_opfnp"]
-[ext_resource type="Texture2D" path="res://sprites/middle.png" id="4_cp0ys"]
-[ext_resource type="Texture2D" path="res://sprites/front.png" id="5_yhxw7"]
+[ext_resource type="Script" uid="uid://cf4ndw2jc0q5j" path="res://Scripts/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://ckoka2qt1pxy7" path="res://sprites/clouds.png" id="2_n45e2"]
+[ext_resource type="Texture2D" uid="uid://cjsvib2nbabg5" path="res://sprites/back.png" id="3_opfnp"]
+[ext_resource type="Texture2D" uid="uid://dvgt67gufdlrt" path="res://sprites/middle.png" id="4_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://dspd0ncs226yj" path="res://sprites/front.png" id="5_yhxw7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trj04"]
 content_margin_left = 16.0
@@ -541,38 +541,38 @@ alignment = 1
 
 [node name="Bubble" type="Label" parent="Title/Names" unique_id=2133236393]
 layout_mode = 2
-theme_override_font_sizes/font_size = 72
 theme_override_colors/font_color = Color(0.3, 0.6, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.1, 1)
 theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 72
 text = "Bubble"
 horizontal_alignment = 1
 
 [node name="And" type="Label" parent="Title/Names" unique_id=1322918933]
 layout_mode = 2
-theme_override_font_sizes/font_size = 56
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.1, 1)
 theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 56
 text = "&"
 horizontal_alignment = 1
 
 [node name="Squeak" type="Label" parent="Title/Names" unique_id=794290294]
 layout_mode = 2
-theme_override_font_sizes/font_size = 72
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.1, 1)
 theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 72
 text = "Squeak"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="Title" unique_id=1408705155]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(0.85, 0.92, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.1, 1)
 theme_override_constants/outline_size = 4
-text = "a co-op puzzle platformer for one yeti and one mouse"
+theme_override_font_sizes/font_size = 18
+text = "A co-op puzzle platformer"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="." unique_id=1526326315]
@@ -590,43 +590,43 @@ theme_override_constants/separation = 10
 [node name="Play" type="Button" parent="Buttons" unique_id=1809268127]
 custom_minimum_size = Vector2(240, 46)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_trj04")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_16hvj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vr1f0")
-theme_override_styles/focus = SubResource("StyleBoxFlat_t1dhk")
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_trj04")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_16hvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vr1f0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_t1dhk")
 text = "Play"
 
 [node name="Controls" type="Button" parent="Buttons" unique_id=266951290]
 custom_minimum_size = Vector2(240, 46)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_5egv6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vtepg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_8dnnj")
-theme_override_styles/focus = SubResource("StyleBoxFlat_m3bi6")
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_5egv6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vtepg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8dnnj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_m3bi6")
 text = "Controls"
 
 [node name="Quit" type="Button" parent="Buttons" unique_id=733964435]
 custom_minimum_size = Vector2(240, 46)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_wyh8j")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ujyyl")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mkpwh")
-theme_override_styles/focus = SubResource("StyleBoxFlat_4nkqq")
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_wyh8j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ujyyl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mkpwh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4nkqq")
 text = "Quit"
 
 [node name="ControlsOverlay" type="Control" parent="." unique_id=575382629]
@@ -652,10 +652,10 @@ theme_override_constants/separation = 14
 
 [node name="Heading" type="Label" parent="ControlsOverlay/Centre/Column" unique_id=1138994345]
 layout_mode = 2
-theme_override_font_sizes/font_size = 34
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.1, 1)
 theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 34
 text = "Controls"
 horizontal_alignment = 1
 
@@ -680,15 +680,15 @@ theme_override_constants/separation = 8
 
 [node name="Name" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Heading" unique_id=284022513]
 layout_mode = 2
-theme_override_font_sizes/font_size = 17
 theme_override_colors/font_color = Color(0.3, 0.6, 1, 1)
+theme_override_font_sizes/font_size = 17
 text = "Bubble"
 
 [node name="Subtitle" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Heading" unique_id=1267242116]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.75, 0.8, 0.88, 1)
+theme_override_font_sizes/font_size = 12
 text = "Player 1 · the yeti"
 
 [node name="Move" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=1410772706]
@@ -710,8 +710,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6dk6o")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Move/Keys/KeyA" unique_id=1478532076]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "A"
 
 [node name="KeyD" type="PanelContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Move/Keys" unique_id=416863163]
@@ -722,14 +722,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jr6u5")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Move/Keys/KeyD" unique_id=6307780]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "D"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Move" unique_id=843452337]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Move"
 
 [node name="Jump" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=157896472]
@@ -751,14 +751,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6m47u")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Jump/Keys/KeyW" unique_id=19734019]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "W"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Jump" unique_id=2128703713]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Jump"
 
 [node name="Blowabubble" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=727526779]
@@ -780,14 +780,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_84iac")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Blowabubble/Keys/KeyQ" unique_id=447580124]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Q"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Blowabubble" unique_id=1674710802]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Blow a bubble"
 
 [node name="Use_pickup_throw" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=1534723898]
@@ -809,14 +809,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5n0dv")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Use_pickup_throw/Keys/KeyF" unique_id=1634701824]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "F"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Use_pickup_throw" unique_id=593689052]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Use / pick up / throw"
 
 [node name="Holdtograbacube" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows" unique_id=1613247395]
@@ -838,14 +838,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ne6ao")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube/Keys/KeyLeftmouse" unique_id=1539589111]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Left mouse"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/BubbleCard/Rows/Holdtograbacube" unique_id=41594854]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Hold to grab a cube"
 
 [node name="SqueakCard" type="PanelContainer" parent="ControlsOverlay/Centre/Column/Cards" unique_id=1984283402]
@@ -865,15 +865,15 @@ theme_override_constants/separation = 8
 
 [node name="Name" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Heading" unique_id=2079327775]
 layout_mode = 2
-theme_override_font_sizes/font_size = 17
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 17
 text = "Squeak"
 
 [node name="Subtitle" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Heading" unique_id=1793185739]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.75, 0.8, 0.88, 1)
+theme_override_font_sizes/font_size = 12
 text = "Player 2 · the mouse"
 
 [node name="Move" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=1178865742]
@@ -895,8 +895,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_fmarx")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Move/Keys/KeyLeft" unique_id=936804671]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Left"
 
 [node name="KeyRight" type="PanelContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Move/Keys" unique_id=132858718]
@@ -907,14 +907,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hkdq0")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Move/Keys/KeyRight" unique_id=1147009783]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Right"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Move" unique_id=483207733]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Move"
 
 [node name="Jump" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=548423682]
@@ -936,14 +936,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xcoo4")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Jump/Keys/KeyUp" unique_id=696030174]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Up"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Jump" unique_id=1335094437]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Jump"
 
 [node name="Holdtoblowwind" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=629351293]
@@ -965,14 +965,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jw7lb")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtoblowwind/Keys/KeyRightShift" unique_id=1357018646]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Right Shift"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtoblowwind" unique_id=1931286000]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Hold to blow wind"
 
 [node name="Use_pickup_throw" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=476974161]
@@ -994,14 +994,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6vfk8")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Use_pickup_throw/Keys/KeyEnter" unique_id=813049093]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Enter"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Use_pickup_throw" unique_id=220102548]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Use / pick up / throw"
 
 [node name="Holdtograbacube" type="HBoxContainer" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows" unique_id=1480139291]
@@ -1023,35 +1023,35 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1xund")
 
 [node name="Label" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube/Keys/KeyRightmouse" unique_id=900034594]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.12, 0.13, 0.17, 1)
+theme_override_font_sizes/font_size = 12
 text = "Right mouse"
 
 [node name="Action" type="Label" parent="ControlsOverlay/Centre/Column/Cards/SqueakCard/Rows/Holdtograbacube" unique_id=1989531222]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 13
 text = "Hold to grab a cube"
 
 [node name="Help" type="Label" parent="ControlsOverlay/Centre/Column" unique_id=1920270356]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.8, 0.86, 0.94, 1)
+theme_override_font_sizes/font_size = 13
 text = "Both of you get into the cave and press use to move on.  Esc pauses, Tab shows these in a level."
 
 [node name="Back" type="Button" parent="ControlsOverlay/Centre/Column" unique_id=1743990592]
 custom_minimum_size = Vector2(240, 46)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_msuys")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_aylim")
-theme_override_styles/hover = SubResource("StyleBoxFlat_y82t1")
-theme_override_styles/focus = SubResource("StyleBoxFlat_bmhhk")
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_msuys")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aylim")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y82t1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bmhhk")
 text = "Back"
 
 [node name="Footer" type="Label" parent="." unique_id=617955914]
@@ -1063,7 +1063,7 @@ anchor_bottom = 1.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.85, 0.9, 0.97, 0.8)
+theme_override_font_sizes/font_size = 13
 text = "Three Thing Game 2026  ·  The Eggbasket"
 horizontal_alignment = 1
