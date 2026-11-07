@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://bn60vt6u4pnmg" path="res://Scenes/player.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scripts/wind_yeti.gd" id="2_script"]
+
+[node name="PlayerWind" unique_id=0 instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+player_id = 2

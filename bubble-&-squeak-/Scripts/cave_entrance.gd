@@ -91,10 +91,11 @@ func _check_ready() -> void:
 	if _inside.size() < needed:
 		return
 
-	_transitioning = true   
+	# check the path first, otherwise the door locks itself for good if it's empty
 	if next_level_path == "":
 		push_warning("CaveEntrance has no next_level_path set")
 		return
+	_transitioning = true
 
 	await get_tree().create_timer(beat_before_fade).timeout
 

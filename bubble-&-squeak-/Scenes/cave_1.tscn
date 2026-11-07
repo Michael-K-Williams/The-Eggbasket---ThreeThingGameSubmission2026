@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://d06kroitiejto"]
 
 [ext_resource type="TileSet" uid="uid://twcckvq4s8p" path="res://TilesetTest.tres" id="1_i27f2"]
-[ext_resource type="PackedScene" uid="uid://bn60vt6u4pnmg" path="res://Scenes/player.tscn" id="2_k1554"]
+[ext_resource type="PackedScene" path="res://Scenes/player_bubble.tscn" id="2_k1554"]
+[ext_resource type="PackedScene" path="res://Scenes/player_wind.tscn" id="2_wind"]
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="3_yspam"]
 [ext_resource type="Texture2D" uid="uid://cusck810g5tnx" path="res://sprites/temp cave.png" id="4_jgtpf"]
 
@@ -28,7 +29,7 @@ collision_layer = 3
 z_index = -1
 texture = ExtResource("4_jgtpf")
 
-[node name="Player2" parent="." unique_id=1972681812 instance=ExtResource("2_k1554")]
+[node name="Player2" parent="." unique_id=1972681812 instance=ExtResource("2_wind")]
 position = Vector2(-16, 125)
 collision_layer = 3
 player_id = 2

@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://sxhlfcynd2x3" path="res://sprites/backgroundtemp.png" id="1_ujyaq"]
 [ext_resource type="TileSet" uid="uid://twcckvq4s8p" path="res://TilesetTest.tres" id="2_oy2kj"]
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="2_sa0i8"]
-[ext_resource type="PackedScene" uid="uid://bn60vt6u4pnmg" path="res://Scenes/player.tscn" id="2_shgkq"]
+[ext_resource type="PackedScene" path="res://Scenes/player_bubble.tscn" id="2_shgkq"]
+[ext_resource type="PackedScene" path="res://Scenes/player_wind.tscn" id="2_wind"]
 [ext_resource type="PackedScene" uid="uid://dhj2frbe010ae" path="res://Scenes/cube.tscn" id="3_shgkq"]
 [ext_resource type="PackedScene" uid="uid://cj52hkydpsobs" path="res://Scenes/rock.tscn" id="5_oy2kj"]
 [ext_resource type="PackedScene" uid="uid://dk8vfds7hb3ry" path="res://Scenes/Arrival Cave.tscn" id="7_rdb2v"]
@@ -37,7 +38,7 @@ collision_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=925791542]
 
-[node name="Player2" parent="." unique_id=1570280391 instance=ExtResource("2_shgkq")]
+[node name="Player2" parent="." unique_id=1570280391 instance=ExtResource("2_wind")]
 position = Vector2(-51, -121)
 disable_mode = 0
 collision_layer = 2

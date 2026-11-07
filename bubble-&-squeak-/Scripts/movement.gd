@@ -1,11 +1,10 @@
+# Shared base for both yetis: running, jumping, wind, grabbing, props, caves
+# and the bubbled status. What each yeti can *do* lives in its own script:
+#   bubble_yeti.gd (player 1) and wind_yeti.gd (player 2), both override _use_ability().
 class_name Yeti
 extends CharacterBody2D
 
-enum Ability { BUBBLE, WIND }
-
 @export var player_id: int = 1
-var ability: Ability
-var _bubble: Bubble = null
 @export var ability_cooldown: float = 0.5
 @export var move_speed: float = 300.0
 @export var acceleration: float = 2000.0
@@ -26,7 +25,10 @@ var _bubble: Bubble = null
 @export var bubble_acceleration: float = 0.0
 @export var bubble_friction: float = 120.0      
 @export var bubble_jump_mult: float = 0.5
-@export var bubble_leave_time: float = bubble_duration - 0.3
+@export var move_pop_grace: float = 0.75   # seconds after getting in before moving or jumping can pop it
+# timer value at which the grace runs out (timer counts down from bubble_duration)
+var bubble_leave_time: float:
+	get: return bubble_duration - move_pop_grace
 @export var was_in_bubble: bool = false
 @export var push_transfer: float = 1.0  
 @export_group("Props")
@@ -63,7 +65,6 @@ var _wind_accel := Vector2.ZERO
 
 var _grabbed_cube: PushableCube = null
 var _bubble_visual: BubbleVisual
-var _fan: Fan = null
 
 
 func _ready() -> void:
@@ -74,7 +75,6 @@ func _ready() -> void:
 	_act_grab = StringName(prefix + "grab")
 	_act_ability = StringName(prefix + "ability")
 	_act_interact = StringName(prefix + "interact")
-	ability = Ability.BUBBLE if player_id == 1 else Ability.WIND
 
 	_bubble_visual = BubbleVisual.new()
 	_bubble_visual.radius = _bubble_radius()
@@ -278,41 +278,13 @@ func _handle_ability(delta: float) -> void:
 	if _ability_timer > 0.0 or not Input.is_action_just_pressed(_act_ability):
 		return
 	_ability_timer = ability_cooldown
-
-	match ability:
-		Ability.BUBBLE:
-			_blow_bubble()
-		Ability.WIND:
-			_place_fan()
+	_use_ability()
 
 
-func _blow_bubble() -> void:
-	if is_instance_valid(_bubble):
-		_bubble.queue_free()
+# overridden by BubbleYeti / WindYeti, the base yeti has no ability
+func _use_ability() -> void:
+	pass
 
-	var bubble := Bubble.new()
-	bubble.radius = _bubble_radius()
-	get_parent().add_child(bubble)
-	bubble.global_position = global_position + Vector2(
-		_facing * (_body_extents().x + bubble.radius + 4.0), 0.0)
-	_bubble = bubble
-	
-
-
-func _place_fan() -> void:
-	if is_instance_valid(_fan):
-		_fan.queue_free()  
-
-	var fan := Fan.new()
-	fan.wind_direction = Vector2(_facing,0)
-	get_parent().add_child(fan)
-	var ext := _body_extents()
-	fan.global_position = Vector2(
-		global_position.x + _facing * (ext.x + fan.fan_size.x / 2.0 + 6.0),
-		global_position.y + ext.y - fan.fan_size.y / 2.0)
-	
-
-	_fan = fan
 
 func _handle_props() -> void:
 	if Input.is_action_just_pressed(_act_interact):
