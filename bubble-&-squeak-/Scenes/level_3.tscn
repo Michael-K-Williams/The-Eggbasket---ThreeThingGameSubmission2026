@@ -94,6 +94,7 @@ script = ExtResource("11_mtnpm")
 size = Vector2(320, 54)
 spare_bubbled = true
 tint = Color(0.55, 0.8, 1, 0.65)
+look = 2
 
 [node name="Bridge" parent="." unique_id=1501947985 instance=ExtResource("12_f8et3")]
 position = Vector2(448, 528)
