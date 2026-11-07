@@ -23,6 +23,7 @@ extends CharacterBody2D
 @export var bubble_wind_response: float = 1    
 @export var bubble_move_speed_mult: float = 0
 @export var bubble_acceleration: float = 0.0
+@export var bubble_max_wind_speed: float = 300.0   # wind stops speeding a bubble up past this (px/s), 0 = no limit
 @export var bubble_friction: float = 120.0      
 @export var bubble_jump_mult: float = 0.5
 @export var move_pop_grace: float = 0.75   # seconds after getting in before moving or jumping can pop it
@@ -191,7 +192,15 @@ func _apply_wind(delta: float) -> void:
 	
 	if not is_bubbled and is_on_floor() and accel.y < 0.0 and -accel.y < _gravity:
 		accel.y = 0.0
+	var before := velocity
 	velocity += accel * delta
+	# the wind only speeds a bubble up to a point, so standing in it for ages
+	# doesn't keep building speed until the bubble is flung across the level
+	if is_bubbled and bubble_max_wind_speed > 0.0:
+		var dir := accel.normalized()
+		var now := velocity.dot(dir)
+		if now > bubble_max_wind_speed:
+			velocity -= dir * (now - maxf(bubble_max_wind_speed, before.dot(dir)))
 
 
 # ---------- movement ----------
