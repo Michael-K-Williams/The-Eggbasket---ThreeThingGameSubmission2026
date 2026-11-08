@@ -88,6 +88,11 @@ position = Vector2(90, 448)
 
 [node name="Player2" parent="." unique_id=552831222 instance=ExtResource("10_t5oqk")]
 position = Vector2(140, 448)
+gust_tint = Color(1, 0.55, 0.2, 1)
+freeze_while_blowing = true
+gust_opacity = 1.1
+shake_amount = 1.0
+shake_speed = 10.0
 
 [node name="LevelTitle" parent="." unique_id=1668866556 instance=ExtResource("12_l3rrl")]
 layer = 60

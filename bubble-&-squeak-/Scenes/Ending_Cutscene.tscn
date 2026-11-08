@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bvutdhrmnergb"]
+
+[ext_resource type="Texture2D" uid="uid://ckoka2qt1pxy7" path="res://sprites/clouds.png" id="1_j6bpr"]
+[ext_resource type="Texture2D" uid="uid://cjsvib2nbabg5" path="res://sprites/back.png" id="2_xt35j"]
+[ext_resource type="Texture2D" uid="uid://dvgt67gufdlrt" path="res://sprites/middle.png" id="3_fm46o"]
+[ext_resource type="Texture2D" uid="uid://dspd0ncs226yj" path="res://sprites/front.png" id="4_lspw5"]
+[ext_resource type="Script" uid="uid://by5loruh6lcs0" path="res://Scripts/kill_zone.gd" id="5_t3hb7"]
+[ext_resource type="Script" uid="uid://c1tj2oiwcqveh" path="res://Scenes/ending_cutscene.gd" id="6_kyw4d"]
+[ext_resource type="PackedScene" uid="uid://cxtpnqofjq78t" path="res://Scenes/player_bubble.tscn" id="7_5guw8"]
+[ext_resource type="PackedScene" uid="uid://bu5cl0bnig5p0" path="res://Scenes/player_wind.tscn" id="8_ok7h1"]
+[ext_resource type="AudioStream" uid="uid://cxhhhk35o57ol" path="res://Sounds/dragon-studio-blizzard-wind-463217.mp3" id="9_jbu5c"]
+[ext_resource type="Texture2D" uid="uid://bi6ch3kbmvrlp" path="res://sprites/Ice block.png" id="10_8stkt"]
+[ext_resource type="TileSet" uid="uid://cp31ab2bu4mw2" path="res://NewTileSet.tres" id="11_k3l53"]
+
+[node name="Node2D" type="Node2D" unique_id=823770189]
+
+[node name="Parallax_clouds" type="Parallax2D" parent="." unique_id=457453499]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_clouds" unique_id=1799111607]
+z_index = -10
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_j6bpr")
+
+[node name="Parallax_back" type="Parallax2D" parent="." unique_id=812486978]
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_back" unique_id=1956161626]
+z_index = -9
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("2_xt35j")
+
+[node name="Parallax_middle" type="Parallax2D" parent="." unique_id=1938886176]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_middle" unique_id=846141269]
+z_index = -8
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("3_fm46o")
+
+[node name="Parallax_front" type="Parallax2D" parent="." unique_id=2091381781]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_front" unique_id=681022447]
+z_index = -7
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("4_lspw5")
+
+[node name="IceWater1" type="Area2D" parent="." unique_id=1106861878]
+position = Vector2(597, 577)
+scale = Vector2(2.762469, 2.5770407)
+script = ExtResource("5_t3hb7")
+size = Vector2(320, 54)
+spare_bubbled = true
+tint = Color(0.55, 0.8, 1, 0.65)
+look = 2
+
+[node name="Node2D" type="Node2D" parent="." unique_id=514764329 node_paths=PackedStringArray("cave_point", "ledge_point", "platform")]
+script = ExtResource("6_kyw4d")
+bubble_scene = ExtResource("7_5guw8")
+squeak_scene = ExtResource("8_ok7h1")
+main_menu_path = "uid://d2e6bh055l32g"
+cave_point = NodePath("../Cave point")
+ledge_point = NodePath("../Ledge point")
+platform = NodePath("../Platform")
+blizzard_sound = ExtResource("9_jbu5c")
+
+[node name="Cave point" type="Marker2D" parent="." unique_id=1298220874]
+position = Vector2(109, 410)
+
+[node name="Ledge point" type="Marker2D" parent="." unique_id=112012020]
+position = Vector2(189, 410)
+
+[node name="Platform" type="Node2D" parent="." unique_id=906421976]
+position = Vector2(451, 483)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform" unique_id=1278006875]
+position = Vector2(-32, 33)
+texture = ExtResource("10_8stkt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Platform" unique_id=1098691973]
+position = Vector2(32, 33)
+texture = ExtResource("10_8stkt")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=907609006]
+position = Vector2(0, -64)
+tile_set = ExtResource("11_k3l53")
+format = 2
+layer_0/tile_data = PackedInt32Array(589826, 196608, 0, 589825, 65536, 3, 524289, 0, 0, 524290, 65536, 2, 655362, 196608, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 524288, 0, 0, 589823, 0, 0, 589822, 0, 0, 720898, 65536, 1, 589824, 65536, 3, 655359, 65536, 3, 655358, 65536, 3, 720894, 65536, 3, 720895, 65536, 3, 655360, 65536, 3, 655361, 65536, 3, 786430, 65536, 3, 786431, 65536, 3, 851967, 65536, 3, 720896, 65536, 3, 786432, 65536, 3, 786433, 65536, 3, 720897, 65536, 3, 851966, 65536, 3, 917502, 65536, 3, 917503, 65536, 3, 851968, 65536, 3, 851969, 65536, 3, 851970, 65536, 3, 851971, 65536, 3, 851972, 65536, 3, 851973, 65536, 3, 851974, 65536, 3, 851975, 65536, 3, 786438, 65536, 3, 786437, 65536, 3, 786436, 65536, 3, 786435, 65536, 3, 786434, 65536, 3, 786439, 65536, 3, 786440, 65536, 3, 786441, 65536, 3, 786442, 65536, 3, 786443, 65536, 3, 786444, 65536, 3, 786445, 65536, 3, 786446, 65536, 3, 786447, 65536, 3, 786448, 65536, 3, 786449, 65536, 3, 786450, 65536, 3, 786451, 65536, 3, 786452, 65536, 3, 851988, 65536, 3, 851987, 65536, 3, 851986, 65536, 3, 851985, 65536, 3, 851984, 65536, 3, 851983, 65536, 3, 851982, 65536, 3, 851981, 65536, 3, 851980, 65536, 3, 851979, 65536, 3, 851978, 65536, 3, 851977, 65536, 3, 851976, 65536, 3, 983038, 65536, 3, 983039, 65536, 3, 917504, 65536, 3, 917505, 65536, 3, 917506, 65536, 3, 917507, 65536, 3, 917508, 65536, 3, 917509, 65536, 3, 917510, 65536, 3, 917511, 65536, 3, 917512, 65536, 3, 917513, 65536, 3, 917514, 65536, 3, 917515, 65536, 3, 917516, 65536, 3, 917517, 65536, 3, 917518, 65536, 3, 917519, 65536, 3, 917520, 65536, 3, 917521, 65536, 3, 917522, 65536, 3, 917523, 65536, 3, 917524, 65536, 3, 524287, 196608, 3, 458752, 262144, 3, 458754, 262144, 3)

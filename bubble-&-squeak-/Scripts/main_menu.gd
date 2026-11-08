@@ -9,8 +9,10 @@
 extends Control
 
 #const FIRST_LEVEL := "res://Scenes/level_1.tscn"
-const FIRST_LEVEL := "res://Scenes/cave_1.tscn"
-#const FIRST_LEVEL := "res://Scenes/Mockup ending cutscene.tscn"
+const FIRST_LEVEL := "res://Scenes/Starting_Cutscene.tscn"
+#const FIRST_LEVEL := "res://Scenes/Ending_Cutscene.tscn"
+#const FIRST_LEVEL := "res://Scenes/level_3.tscn"
+
 var _clouds: Control
 var _bubbles: Control
 var _title: Control

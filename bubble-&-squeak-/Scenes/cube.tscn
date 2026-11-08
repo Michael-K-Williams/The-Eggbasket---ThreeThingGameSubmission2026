@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dhj2frbe010ae"]
 
 [ext_resource type="Script" uid="uid://ei2w78vcxbb1" path="res://Scripts/PushableCube.gd" id="1_dt3qw"]
-[ext_resource type="Texture2D" uid="uid://bhqr1giglihf2" path="res://sprites/TestCube.png" id="1_m6c8s"]
+[ext_resource type="Texture2D" uid="uid://bi6ch3kbmvrlp" path="res://sprites/Ice block.png" id="2_dt3qw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shgkq"]
 friction = 0.0
@@ -17,7 +17,7 @@ script = ExtResource("1_dt3qw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=604830489]
 texture_filter = 1
-texture = ExtResource("1_m6c8s")
+texture = ExtResource("2_dt3qw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1193045526]
 shape = SubResource("RectangleShape2D_gf24m")
