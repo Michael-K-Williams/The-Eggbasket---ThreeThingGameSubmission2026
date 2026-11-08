@@ -54,7 +54,7 @@ void fragment() {
 @export var size: Vector2 = Vector2(48, 220)
 @export var strength: float = 700.0
 @export var tint := Color(0.75, 0.92, 1.0, 1.0)
-@export_flags_2d_physics var affects_mask: int = 2 | 4 | 8
+@export_flags_2d_physics var affects_mask: int = 2 | 4 | 8 | 16
 @export_range(0.0, 1.0) var source_width: float = 1.0   # see the shader, 1.0 for fans
 var exclude: Node = null   # never blows this one (the wind yeti, since its gust starts inside it)
 

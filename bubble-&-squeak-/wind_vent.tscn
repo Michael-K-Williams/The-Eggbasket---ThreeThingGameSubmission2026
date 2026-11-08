@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bqr5bpsq5chmg"]
+
+[ext_resource type="Script" uid="uid://dmwhh2gohm78y" path="res://Scripts/wind_vent.gd" id="1_8hrk5"]
+
+[node name="WindVent" type="StaticBody2D" unique_id=1663824444]
+script = ExtResource("1_8hrk5")

@@ -14,40 +14,40 @@ extends CharacterBody2D
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
 @export_group("Wind")
-@export var normal_wind_response: float = 0.35  
+@export var normal_wind_response: float = 0.35
 @export_group("Bubbled")
-@export var bubble_duration: float = 8.0         
+@export var bubble_duration: float = 8.0
 @export var bubble_gravity_scale: float = 0
 @export var bubble_max_fall_speed: float = 70.0
 @export var bubble_max_rise_speed: float = 300.0
-@export var bubble_wind_response: float = 1    
+@export var bubble_wind_response: float = 1
 @export var bubble_move_speed_mult: float = 0
 @export var bubble_acceleration: float = 0.0
 @export var bubble_max_wind_speed: float = 300.0   # wind stops speeding a bubble up past this (px/s), 0 = no limit
-@export var bubble_friction: float = 150.0   # how quickly a drifting bubble slows once the wind stops
-@export var fan_hover_depth: float = 24.0     # how far below the top of a fan's wind a bubble floats
-@export var fan_bob_height: float = 6.0       # how far it bobs up and down there
-@export var fan_bob_period: float = 1.6       # seconds for one bob
-@export var pop_shake_time: float = 0.45      # hold a direction or jump this long (seconds) and the bubble pops, it shakes while you do
+@export var bubble_friction: float = 150.0         # how quickly a drifting bubble slows once the wind stops
+@export var fan_hover_depth: float = 24.0          # how far below the top of a fan's wind a bubble floats
+@export var fan_bob_height: float = 6.0            # how far it bobs up and down there
+@export var fan_bob_period: float = 1.6            # seconds for one bob
+@export var pop_shake_time: float = 0.45           # hold a direction or jump this long and the bubble pops, it shakes while you do
 @export var bubble_jump_mult: float = 0.5
-@export var move_pop_grace: float = 0.75   # seconds after getting in before moving or jumping can pop it
+@export var move_pop_grace: float = 0.75           # seconds after getting in before moving or jumping can pop it
 # timer value at which the grace runs out (timer counts down from bubble_duration)
 var bubble_leave_time: float:
 	get: return bubble_duration - move_pop_grace
 @export var was_in_bubble: bool = false
-@export var push_transfer: float = 1.0  
+@export var push_transfer: float = 1.0
 @export_group("Props")
-@export var throw_up_ratio: float = 1.0    
 @export var pickup_range: float = 120.0
+@export var throw_inherit_velocity: float = 0.5    # how much of your own speed adds to a throw
+
 var in_cave := false
+var near_cave := false   # set by CaveEntrance, so interact enters the cave instead of grabbing props
 var _spawn_fallback := Vector2.ZERO   # where we started, used if the level has no respawn point
 var _saved_layer: int = 0
 var _saved_mask: int = 0
 
-@export var throw_inherit_velocity: float = 0.5   
-
 var _act_interact: StringName
-var _held_prop: Prop = null       
+var _held_prop: Prop = null
 
 @onready var _grab_zone: Area2D = $GrabZone
 @onready var _body_shape: CollisionShape2D = $CollisionShape2D
@@ -74,6 +74,7 @@ var _wind_accel := Vector2.ZERO
 
 var _grabbed_cube: PushableCube = null
 var _bubble_visual: BubbleVisual
+var _aimer: ThrowAimer
 
 
 func _ready() -> void:
@@ -86,6 +87,7 @@ func _ready() -> void:
 	_act_interact = StringName(prefix + "interact")
 	_spawn_fallback = global_position
 	add_to_group("yetis")
+	add_to_group("players")
 
 	_bubble_visual = BubbleVisual.new()
 	_bubble_visual.radius = _bubble_radius()
@@ -93,13 +95,18 @@ func _ready() -> void:
 	_bubble_visual.z_index = 1
 	add_child(_bubble_visual)
 
+	_aimer = ThrowAimer.new()
+	_aimer.z_index = 10
+	_aimer.finished.connect(_on_aim_finished)
+	add_child(_aimer)
+
 
 func _physics_process(delta: float) -> void:
 	_tick_bubble(delta)
 	_apply_gravity(delta)
 	_apply_wind(delta)
 	_handle_grab()
-	_handle_props()      
+	_handle_props()
 	_handle_horizontal(delta)
 	_handle_jump(delta)
 	_handle_ability(delta)
@@ -110,7 +117,7 @@ func _physics_process(delta: float) -> void:
 	var intended_velocity := velocity
 	move_and_slide()
 	_push_bubbled_players(intended_velocity)
-	_update_held_prop()    
+	_update_held_prop()
 
 
 # ---------- helpers ----------
@@ -130,7 +137,6 @@ func _body_extents() -> Vector2:
 
 
 func _bubble_radius() -> float:
-
 	return _body_extents().length() * 1.1
 
 
@@ -149,12 +155,16 @@ func set_bubbled(value: bool) -> void:
 	_bubble_visual.shake = 0.0
 	_pop_charge = 0.0
 	_bubble_timer = bubble_duration
-	if value and _grabbed_cube != null:
-		if value and _held_prop != null:
+
+	if value:
+		if _grabbed_cube != null:
+			_grabbed_cube.release(self)
+			_grabbed_cube = null
+		if _held_prop != null:
 			_held_prop.call_deferred("throw", Vector2.ZERO)
-		_held_prop = null
-		_grabbed_cube.release(self)
-		_grabbed_cube = null
+			_held_prop = null
+		if _aimer != null:
+			_aimer.cancel()
 
 
 func _tick_bubble(delta: float) -> void:
@@ -185,11 +195,7 @@ func _tick_pop_charge(delta: float) -> void:
 		velocity.y = jump_velocity * bubble_jump_mult
 
 
-
-"func receive_push(push_velocity: Vector2) -> void:
-	velocity.x = push_velocity.x"
-
-
+# (receive_push was removed: shoving a bubbled yeti now pops them instead)
 func _push_bubbled_players(intended_velocity: Vector2) -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
@@ -198,15 +204,13 @@ func _push_bubbled_players(intended_velocity: Vector2) -> void:
 			continue
 		var push_dir := -collision.get_normal()
 		if absf(push_dir.x) < 0.5:
-			continue  
+			continue
 		var amount := intended_velocity.dot(push_dir)
 		if amount > 0.0:
 			other.set_bubbled(false)
-			"other.receive_push(push_dir * amount * push_transfer)"
 
 
 # ---------- wind ----------
-
 
 # called by an upward WindZone with the height its wind reaches
 func wind_ceiling(top_y: float) -> void:
@@ -235,7 +239,7 @@ func _apply_wind(delta: float) -> void:
 
 	if accel == Vector2.ZERO:
 		return
-	
+
 	if not is_bubbled and is_on_floor() and accel.y < 0.0 and -accel.y < _gravity:
 		accel.y = 0.0
 	var before := velocity
@@ -259,7 +263,8 @@ func _apply_gravity(delta: float) -> void:
 
 
 func _handle_horizontal(delta: float) -> void:
-	var direction := Input.get_axis(_act_left, _act_right)
+	# no walking while lining up a throw
+	var direction := 0.0 if _aimer.active else Input.get_axis(_act_left, _act_right)
 	if direction != 0.0:
 		_facing = signf(direction)
 		# the art faces right, mirror it when we turn round
@@ -297,7 +302,7 @@ func _handle_jump(delta: float) -> void:
 	# inside a bubble a jump isn't a jump, it's an attempt to get out (see _tick_pop_charge)
 	if is_bubbled:
 		_jump_buffer_timer = 0.0
-	elif _grabbed_cube == null and _jump_buffer_timer > 0.0 and _coyote_timer > 0.0:
+	elif _grabbed_cube == null and not _aimer.active and _jump_buffer_timer > 0.0 and _coyote_timer > 0.0:
 		velocity.y = jump_velocity
 		_jump_buffer_timer = 0.0
 		_coyote_timer = 0.0
@@ -318,7 +323,7 @@ func _handle_grab() -> void:
 			_grabbed_cube = null
 		return
 
-	if  Input.is_action_just_pressed(_act_grab) and is_on_floor() and not is_bubbled and _held_prop == null:
+	if Input.is_action_just_pressed(_act_grab) and is_on_floor() and not is_bubbled and _held_prop == null:
 		var closest: PushableCube = null
 		var closest_dist := INF
 		for body in _grab_zone.get_overlapping_bodies():
@@ -353,25 +358,30 @@ func _stop_ability() -> void:
 	pass
 
 
+# ---------- props ----------
+
 func _handle_props() -> void:
-	if Input.is_action_just_pressed(_act_interact):
-		print("interact pressed by P", player_id, " held: ", _held_prop, " bubbled: ", is_bubbled, " cube: ", _grabbed_cube)
+	# forget the prop if it was freed or taken away
 	if _held_prop != null and (not is_instance_valid(_held_prop)
 			or _held_prop.state != Prop.State.HELD or _held_prop.holder != self):
 		_held_prop = null
+	if _held_prop == null and _aimer.active:
+		_aimer.cancel()
 
+	if near_cave:
+		return
 	if not Input.is_action_just_pressed(_act_interact):
 		return
 
-	if _held_prop != null:
-		_throw_prop()
-	elif _grabbed_cube == null and not is_bubbled:
+	if _aimer.active:
+		_aimer.confirm()
+	elif _held_prop != null:
+		_aimer.begin(_facing)
+	elif _grabbed_cube == null and not is_bubbled and _can_carry_props():
 		_try_pick_up_prop()
 
 
 func _try_pick_up_prop() -> void:
-	for node in get_tree().get_nodes_in_group("props"):
-		print(node, " distance: ", global_position.distance_to(node.global_position))
 	var closest: Prop = null
 	var closest_dist := pickup_range
 	for node in get_tree().get_nodes_in_group("props"):
@@ -386,9 +396,10 @@ func _try_pick_up_prop() -> void:
 		_held_prop = closest
 
 
-func _throw_prop() -> void:
-	var dir := Vector2(_facing, -throw_up_ratio).normalized()
-	var throw_velocity := dir * _held_prop.throw_speed
+func _on_aim_finished(direction: Vector2, power: float) -> void:
+	if _held_prop == null:
+		return
+	var throw_velocity := direction * _held_prop.throw_speed * power
 	throw_velocity.x += velocity.x * throw_inherit_velocity
 	_held_prop.throw(throw_velocity)
 	_held_prop = null
@@ -398,7 +409,11 @@ func _update_held_prop() -> void:
 	if _held_prop == null:
 		return
 	_held_prop.global_position = global_position + Vector2(_facing * 6.0, -_body_extents().y - 12.0)
-	
+	_aimer.global_position = _held_prop.global_position
+
+
+# ---------- caves ----------
+
 func enter_cave(cave_pos: Vector2, animated: bool = true) -> void:
 	if in_cave:
 		return
@@ -409,7 +424,7 @@ func enter_cave(cave_pos: Vector2, animated: bool = true) -> void:
 	velocity = Vector2.ZERO
 	_saved_layer = collision_layer
 	_saved_mask = collision_mask
-	collision_layer = 0   
+	collision_layer = 0
 	collision_mask = 0
 	set_physics_process(false)
 
@@ -435,7 +450,6 @@ func leave_cave(pos: Vector2) -> void:
 	create_tween().tween_property(self, "modulate:a", 1.0, 0.25)
 
 
-
 # ---------- death ----------
 
 # called by KillZone. Drops whatever we're holding and puts us back at the respawn point.
@@ -451,6 +465,8 @@ func die() -> void:
 
 func _let_go_of_everything() -> void:
 	_stop_ability()
+	if _aimer != null:
+		_aimer.cancel()
 	if _grabbed_cube != null:
 		_grabbed_cube.release(self)
 		_grabbed_cube = null
@@ -485,3 +501,6 @@ func _respawn_position() -> Vector2:
 	if fallback_node != null:
 		return fallback_node.get_respawn_position(self)
 	return _spawn_fallback
+	
+func _can_carry_props() -> bool:
+	return false

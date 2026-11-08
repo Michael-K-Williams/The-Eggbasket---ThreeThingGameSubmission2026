@@ -2,7 +2,7 @@ class_name Bubble
 extends Area2D
 
 @export var radius: float = 30.0
-@export_flags_2d_physics var player_mask: int = 2
+@export_flags_2d_physics var player_mask: int = 2 | 16
 @export_flags_2d_physics var bubble_layer: int = 8
 @export var lifetime: float = 10.0
 @export var wind_response: float = 1.5
@@ -29,6 +29,8 @@ var _started := false
 var _grow_t := 0.0
 var _shape: CircleShape2D
 var _visual: BubbleVisual
+
+
 
 
 
@@ -99,6 +101,13 @@ func _physics_process(delta: float) -> void:
 		_visual.bob_offset = Vector2(0.0, sin(t * bob_speed * TAU) * bob_height)
 
 	for body in get_overlapping_bodies():
+		var prop := body as Prop
+		if prop != null:
+			if _grow_t >= 0.5 and prop.state == Prop.State.FREE and not prop.is_bubbled:
+				prop.set_bubbled(true)
+				queue_free()
+				return
+			continue
 		var yeti := body as Yeti
 		if yeti != null:
 			_touch(yeti)

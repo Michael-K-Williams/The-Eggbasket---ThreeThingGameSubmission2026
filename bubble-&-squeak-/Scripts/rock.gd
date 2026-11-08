@@ -6,7 +6,7 @@ extends Prop
 
 func _init() -> void:
 	mass = 0.4
-	throw_speed = 700.0
+	throw_speed = 1100.0
 	bounciness = 0.3  
 	sticks_to_walls = false
 
