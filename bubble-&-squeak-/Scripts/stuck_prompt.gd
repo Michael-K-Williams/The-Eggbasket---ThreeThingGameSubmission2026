@@ -107,9 +107,9 @@ func _physics_process(delta: float) -> void:
 
 	# a cube that's fallen where nobody can reach it
 	var lost := false
-	for node in scene.find_children("*", "PushableCube", true, false):
-		if (node as Node2D).global_position.y > lost_cube_depth:
-			lost = true
+	#for node in scene.find_children("*", "PushableCube", true, false):
+		#if (node as Node2D).global_position.y > lost_cube_depth:
+			#lost = true
 	_lost_for = _lost_for + delta if lost else 0.0
 
 	# buttons being pressed while nothing moves

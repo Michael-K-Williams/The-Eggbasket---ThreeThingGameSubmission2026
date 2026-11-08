@@ -2,22 +2,22 @@
 class_name WindVent
 extends StaticBody2D
 
-signal started   # the turbine is up to speed and the doors are opening
-signal stopped   # the delay ran out and the doors are closing
+signal started  
+signal stopped   
 
-const WIND_GAP := 0.1   # wind counts as "still on" if it was seen this recently
+const WIND_GAP := 0.1   
 
 @export var doors: Array[Door] = []
 @export var size := Vector2(40, 40):
 	set(v):
 		size = v
 		queue_redraw()
-@export var release_delay: float = 1.0      # seconds after the wind stops before the doors close
-@export var spin_up_time: float = 0.5       # how long the blades take to get up to speed (opens the door when ready)
-@export var spin_down_time: float = 1.2     # how long they take to wind down
-@export var face_into_wind: bool = false    # true = only wind blowing into the vent's front counts
+@export var release_delay: float = 1.0     
+@export var spin_up_time: float = 0.5      
+@export var spin_down_time: float = 1.2   
+@export var face_into_wind: bool = false    
 @export_range(10.0, 90.0) var max_angle_deg: float = 60.0
-@export var sense_margin: float = 6.0       # how far past the housing the wind is picked up
+@export var sense_margin: float = 6.0      
 @export var housing_color := Color(0.28, 0.3, 0.38)
 @export var blade_color := Color(0.75, 0.85, 0.95)
 
@@ -25,11 +25,11 @@ var is_on := false
 
 var _sensor: Area2D
 var _since_wind := 999.0
-var _spin := 0.0          # 0 = still, 1 = full speed
+var _spin := 0.0         
 var _blade_angle := 0.0
 
 
-# A tiny Area2D that the WindZones can find. They only look for things that have apply_wind().
+
 class _Sensor extends Area2D:
 	var vent: WindVent
 
@@ -38,13 +38,13 @@ class _Sensor extends Area2D:
 			vent._receive_wind(direction)
 
 	func wind_ceiling(_top_y: float) -> void:
-		pass   # harmless, in case a zone offers its height to everything it touches
+		pass   
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	collision_layer = 1   # World: solid, and props bounce off it
+	collision_layer = 1  
 	collision_mask = 0
 
 	var rect := RectangleShape2D.new()
@@ -53,7 +53,7 @@ func _ready() -> void:
 	cs.shape = rect
 	add_child(cs)
 
-	# layer 4 (value 8) is already in every wind zone's mask, so zones can see this
+
 	_sensor = _Sensor.new()
 	_sensor.vent = self
 	_sensor.collision_layer = 8
@@ -68,11 +68,11 @@ func _ready() -> void:
 	add_child(_sensor)
 
 
-# called (via the sensor) by a WindZone every physics frame it overlaps us
+
 func _receive_wind(direction: Vector2) -> void:
 	print("vent got wind ", direction)
 	if face_into_wind:
-		var intake := Vector2.UP.rotated(global_rotation)   # the vent's front
+		var intake := Vector2.UP.rotated(global_rotation)  
 		if direction.normalized().dot(-intake) < cos(deg_to_rad(max_angle_deg)):
 			return
 	_since_wind = 0.0

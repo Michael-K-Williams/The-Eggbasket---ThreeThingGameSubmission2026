@@ -6,8 +6,8 @@ extends Area2D
 @export_flags_2d_physics var bubble_layer: int = 8
 @export var lifetime: float = 10.0
 @export var wind_response: float = 1.5
-@export var drag: float = 0.0
-@export var max_speed: float = 0.0
+@export var drag: float = 120.0        
+@export var max_speed: float = 220.0
 @export var time_can_enter: float = 0.5   
 @export var owner_grace: float = 0.25     
 var owner_yeti: Yeti = null
@@ -122,5 +122,37 @@ func _physics_process(delta: float) -> void:
 		return
 	velocity += _wind_accel * delta
 	_wind_accel = Vector2.ZERO
-	velocity = velocity.move_toward(Vector2.ZERO, drag * delta).limit_length(max_speed)
-	position += velocity * delta
+	velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
+	if max_speed > 0.0:
+		velocity = velocity.limit_length(max_speed)
+	_move_with_collision(delta)
+	
+	
+func _move_with_collision(delta: float) -> void:
+	var motion := velocity * delta
+	if motion == Vector2.ZERO:
+		return
+
+	var space := get_world_2d().direct_space_state
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = _shape
+	query.collision_mask = 1   # world (also catches doors)
+
+	# if we're already overlapping something (spawned against a wall), don't get stuck
+	query.transform = Transform2D(0.0, global_position)
+	if not space.intersect_shape(query, 1).is_empty():
+		global_position += motion
+		return
+
+	# try the full move, then each axis on its own so the bubble slides along walls
+	for step in [motion, Vector2(motion.x, 0.0), Vector2(0.0, motion.y)]:
+		query.transform = Transform2D(0.0, global_position + step)
+		if space.intersect_shape(query, 1).is_empty():
+			global_position += step
+			if step != motion:
+				if step.x == 0.0:
+					velocity.x = 0.0
+				else:
+					velocity.y = 0.0
+			return
+	velocity = Vector2.ZERO

@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bp5kw5pur8vfw" path="res://Scenes/pressure_plate.tscn" id="15_vyomg"]
 [ext_resource type="TileSet" uid="uid://cp31ab2bu4mw2" path="res://NewTileSet.tres" id="16_8i23i"]
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="17_bvyvf"]
+[ext_resource type="Script" uid="uid://brv0q4b3j4wn3" path="res://Scripts/blizzard.gd" id="17_yltlr"]
+[ext_resource type="AudioStream" uid="uid://cxhhhk35o57ol" path="res://Sounds/dragon-studio-blizzard-wind-463217.mp3" id="18_6ssoq"]
 [ext_resource type="PackedScene" uid="uid://rp0iyfkh120q" path="res://Scenes/level_title.tscn" id="19_0wb0u"]
 [ext_resource type="PackedScene" uid="uid://disxr4obqq8jl" path="res://Scenes/controls_legend.tscn" id="21_s764c"]
 [ext_resource type="PackedScene" uid="uid://cnqxkcoi6a107" path="res://Scenes/hint.tscn" id="23_yaxpm"]
@@ -175,6 +177,12 @@ dont leave your friend behind! "
 trigger_size = Vector2(200, 100)
 box_offset = Vector2(0, -95)
 font_size = 14
+
+[node name="Bliz effect" type="CanvasLayer" parent="." unique_id=1125008872]
+script = ExtResource("17_yltlr")
+whiteout = 0.15
+sound = ExtResource("18_6ssoq")
+max_volume_db = -6.0
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1686728474]
 tile_set = ExtResource("16_8i23i")

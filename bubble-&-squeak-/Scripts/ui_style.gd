@@ -1,5 +1,4 @@
-# Shared look for menu buttons so the main menu and pause menu match the
-# hint boxes and legend (those use Hint.box_style()).
+
 class_name UiStyle
 extends RefCounted
 

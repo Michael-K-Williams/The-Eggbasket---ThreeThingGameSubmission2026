@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://bp5kw5pur8vfw" path="res://Scenes/pressure_plate.tscn" id="14_j77fg"]
 [ext_resource type="PackedScene" uid="uid://dhj2frbe010ae" path="res://Scenes/cube.tscn" id="15_ki8bc"]
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="16_5l2vs"]
+[ext_resource type="PackedScene" uid="uid://cnqxkcoi6a107" path="res://Scenes/hint.tscn" id="16_kgmqw"]
+[ext_resource type="Script" uid="uid://brv0q4b3j4wn3" path="res://Scripts/blizzard.gd" id="16_nbwsh"]
+[ext_resource type="AudioStream" uid="uid://cxhhhk35o57ol" path="res://Sounds/dragon-studio-blizzard-wind-463217.mp3" id="17_kgmqw"]
 [ext_resource type="PackedScene" uid="uid://rp0iyfkh120q" path="res://Scenes/level_title.tscn" id="18_r5kqc"]
 [ext_resource type="PackedScene" uid="uid://disxr4obqq8jl" path="res://Scenes/controls_legend.tscn" id="20_k0ktw"]
 
@@ -127,6 +130,24 @@ position = Vector2(1504, 480)
 
 [node name="Cube" parent="." unique_id=1217715933 instance=ExtResource("15_ki8bc")]
 position = Vector2(480, 480)
+
+[node name="KeyHint" parent="." unique_id=1859798529 instance=ExtResource("16_kgmqw")]
+position = Vector2(283, 562)
+text = "pull cubes to move them!"
+trigger_size = Vector2(300, 140)
+box_offset = Vector2(0, -130)
+
+[node name="KeyHint" parent="KeyHint" unique_id=1470998640 instance=ExtResource("16_kgmqw")]
+position = Vector2(645, -35)
+text = "Only cubes can weight down these platforms!"
+trigger_size = Vector2(300, 140)
+box_offset = Vector2(0, -130)
+
+[node name="Bliz effect" type="CanvasLayer" parent="." unique_id=255029990]
+script = ExtResource("16_nbwsh")
+whiteout = 0.15
+sound = ExtResource("17_kgmqw")
+max_volume_db = -6.0
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1787234026]
 tile_set = ExtResource("12_c81s1")
