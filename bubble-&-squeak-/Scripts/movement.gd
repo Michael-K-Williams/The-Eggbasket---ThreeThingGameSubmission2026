@@ -348,12 +348,12 @@ func _handle_ability(delta: float) -> void:
 	_use_ability()
 
 
-# overridden by BubbleYeti / WindYeti, the base yeti has no ability
+
 func _use_ability() -> void:
 	pass
 
 
-# cut off anything the ability is still doing (dying, going into a cave)
+
 func _stop_ability() -> void:
 	pass
 

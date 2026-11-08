@@ -63,7 +63,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		var error := target_x - state.transform.origin.x
 
 		if absf(error) > max_drag_distance:
-			call_deferred("_drop")   # can't change exceptions mid physics step
+			call_deferred("_drop") 
 			v.x = 0.0
 		else:
 			v.x = clampf(error / state.step, -grab_speed * 1.5, grab_speed * 1.5)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4sx8k2pq7wd1"]
 
-[ext_resource type="Script" path="res://Scripts/stuck_prompt.gd" id="1_stuck"]
+[ext_resource type="Script" uid="uid://baupfeat2qi3d" path="res://Scripts/stuck_prompt.gd" id="1_stuck"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxry4"]
 content_margin_left = 16.0
@@ -138,6 +138,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Dim" type="ColorRect" parent="Overlay" unique_id=1575760869]
 layout_mode = 0
@@ -157,17 +159,17 @@ alignment = 1
 
 [node name="Heading" type="Label" parent="Overlay/Centre/Column" unique_id=1788228803]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.1, 1)
 theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 40
 text = "Stuck?"
 horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="Overlay/Centre/Column" unique_id=2042190604]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(0.85, 0.9, 0.96, 1)
+theme_override_font_sizes/font_size = 18
 text = "Looks like something's gone wrong.
 Want to restart the level?"
 horizontal_alignment = 1
@@ -180,27 +182,27 @@ theme_override_constants/separation = 8
 [node name="Restart" type="Button" parent="Overlay/Centre/Column/Buttons" unique_id=1459205375]
 custom_minimum_size = Vector2(240, 46)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_gxry4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_31h5l")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gp2i3")
-theme_override_styles/focus = SubResource("StyleBoxFlat_nog3t")
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_gxry4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_31h5l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gp2i3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nog3t")
 text = "Restart level"
 
 [node name="KeepTrying" type="Button" parent="Overlay/Centre/Column/Buttons" unique_id=861917200]
 custom_minimum_size = Vector2(240, 46)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khx3i")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_du3iy")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3w463")
-theme_override_styles/focus = SubResource("StyleBoxFlat_22cfw")
 theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_khx3i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_du3iy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3w463")
+theme_override_styles/focus = SubResource("StyleBoxFlat_22cfw")
 text = "Keep trying"

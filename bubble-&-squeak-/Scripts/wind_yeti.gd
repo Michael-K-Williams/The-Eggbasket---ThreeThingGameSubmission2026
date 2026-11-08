@@ -2,17 +2,17 @@ class_name WindYeti
 extends Yeti
 
 @export_group("Gust")
-@export var gust_linger: float = 0.0        # 0 = stops the moment you let go
+@export var gust_linger: float = 0.0       
 @export var gust_size := Vector2(48, 220)
 @export var gust_strength: float = 700.0
 @export_range(0.0, 1.0) var gust_source_width: float = 0.35
-@export var gust_tint := Color(1.0, 0.55, 0.2)   # yellowy red, so it reads as Squeak's wind
+@export var gust_tint := Color(1.0, 0.55, 0.2)   
 @export var freeze_while_blowing: bool = true
-@export_range(0.0, 2.0) var gust_opacity: float = 1.1   # the shader's default is 0.6
+@export_range(0.0, 2.0) var gust_opacity: float = 1.1   
 
 
-@export var shake_amount: float = 1.0     # pixels left and right
-@export var shake_speed: float = 10.0     # shakes per second
+@export var shake_amount: float = 1.0     
+@export var shake_speed: float = 10.0    
 
 var _sprite: AnimatedSprite2D
 var _sprite_base_x := 0.0

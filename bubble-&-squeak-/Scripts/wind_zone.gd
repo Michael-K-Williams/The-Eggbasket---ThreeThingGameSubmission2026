@@ -55,8 +55,8 @@ void fragment() {
 @export var strength: float = 700.0
 @export var tint := Color(0.75, 0.92, 1.0, 1.0)
 @export_flags_2d_physics var affects_mask: int = 2 | 4 | 8 | 16
-@export_range(0.0, 1.0) var source_width: float = 1.0   # see the shader, 1.0 for fans
-var exclude: Node = null   # never blows this one (the wind yeti, since its gust starts inside it)
+@export_range(0.0, 1.0) var source_width: float = 1.0   
+var exclude: Node = null   
 
 
 @export var DIRECTION := Vector2.LEFT
@@ -89,8 +89,8 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var dir := Vector2.UP.rotated(global_rotation)
-	# for wind blowing upwards, where it runs out, so a bubble can hover there
-	# instead of being carried all the way to the ceiling
+	
+	
 	var upward := dir.y < -0.7
 	var top := global_position.y - size.y / 2.0
 	for body in get_overlapping_bodies():
