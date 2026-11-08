@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br42xp6v8fxfy"
-path="res://.godot/imported/Aster_SpriteSheet.png-a79bfcefffeb2fd377819f1324abf06b.ctex"
+uid="uid://ce45bp8avg1eq"
+path="res://.godot/imported/Index.icon.png-38cc3a32d3aff976dae968d4e623b4ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Aster_SpriteSheet.png"
-dest_files=["res://.godot/imported/Aster_SpriteSheet.png-a79bfcefffeb2fd377819f1324abf06b.ctex"]
+source_file="res://Export/Index.icon.png"
+dest_files=["res://.godot/imported/Index.icon.png-38cc3a32d3aff976dae968d4e623b4ba.ctex"]
 
 [params]
 
