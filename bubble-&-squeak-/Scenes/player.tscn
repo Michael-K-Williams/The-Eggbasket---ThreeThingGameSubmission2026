@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bn60vt6u4pnmg"]
 
-[ext_resource type="Texture2D" uid="uid://br42xp6v8fxfy" path="res://sprites/Aster_SpriteSheet.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://bf31f85k7frv3" path="res://sprites/characters/Bubble.png" id="2_cvnsp"]
 [ext_resource type="Script" uid="uid://dv3jaeusa0s0m" path="res://Scripts/movement.gd" id="2_move"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(33, 59)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(192, 0, 64, 64)
+atlas = ExtResource("2_cvnsp")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vgqql"]
 animations = [{
@@ -36,6 +36,7 @@ shape = SubResource("RectangleShape2D_cvnsp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=104380371]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vgqql")
+frame_progress = 0.6881596
 
 [node name="GrabZone" type="Area2D" parent="." unique_id=1531499303]
 scale = Vector2(1, 1.1999999)

@@ -94,7 +94,7 @@ shake_speed = 10.0
 
 [node name="ExitCave" parent="." unique_id=1124004171 instance=ExtResource("16_5l2vs")]
 position = Vector2(1940, 472)
-next_level_path = "uid://bvutdhrmnergb"
+next_level_path = "uid://puda7vl7r3f0"
 
 [node name="ExitDoor" parent="." unique_id=1548974101 instance=ExtResource("12_f8et3")]
 z_index = -1

@@ -19,7 +19,9 @@
 [ext_resource type="Script" uid="uid://qunyajea5a1j" path="res://Scripts/rock.gd" id="20_dt3rr"]
 [ext_resource type="Script" uid="uid://cpo86bd4p7jiv" path="res://Scripts/Fan.gd" id="21_o5257"]
 [ext_resource type="PackedScene" uid="uid://dhj2frbe010ae" path="res://Scenes/cube.tscn" id="23_11vt7"]
+[ext_resource type="Script" uid="uid://brv0q4b3j4wn3" path="res://Scripts/blizzard.gd" id="23_nqprj"]
 [ext_resource type="Script" uid="uid://chka4405ccw7" path="res://Scripts/respawn_point.gd" id="23_qh6br"]
+[ext_resource type="AudioStream" uid="uid://cxhhhk35o57ol" path="res://Sounds/dragon-studio-blizzard-wind-463217.mp3" id="24_dt3rr"]
 [ext_resource type="Script" uid="uid://by5loruh6lcs0" path="res://Scripts/kill_zone.gd" id="25_votce"]
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="26_cukcj"]
 
@@ -100,12 +102,10 @@ shake_speed = 10.0
 
 [node name="LevelTitle" parent="." unique_id=1668866556 instance=ExtResource("12_g5bgm")]
 layer = 60
-visible = false
-number = "Level 5"
-title = "Bubble Trouble"
+number = "Level 4"
+title = "Chaos Collection "
 
 [node name="ControlsLegend" parent="." unique_id=1315592948 instance=ExtResource("14_koh4j")]
-visible = false
 show_seconds = 5.0
 
 [node name="ExitCave" parent="." unique_id=1124004171 instance=ExtResource("26_cukcj")]
@@ -266,6 +266,12 @@ size = Vector2(320, 50)
 spare_bubbled = true
 tint = Color(0.55, 0.8, 1, 0.65)
 look = 2
+
+[node name="Bliz effect" type="CanvasLayer" parent="." unique_id=608430265]
+script = ExtResource("23_nqprj")
+whiteout = 0.15
+sound = ExtResource("24_dt3rr")
+max_volume_db = -6.0
 
 [node name="PressurePlate3" type="Area2D" parent="." unique_id=1284173539]
 position = Vector2(2370, 188)
