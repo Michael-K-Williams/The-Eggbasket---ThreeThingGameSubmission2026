@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://yut34to8rmqq"]
+
+[ext_resource type="Script" uid="uid://dgpt12aok11ov" path="res://Scripts/collapsing_platform.gd" id="1_10f8r"]
+
+[node name="platform" type="StaticBody2D" unique_id=577545558]
+script = ExtResource("1_10f8r")

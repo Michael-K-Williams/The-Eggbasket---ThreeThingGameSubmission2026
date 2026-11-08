@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhj2frbe010ae"]
 
-[ext_resource type="Script" uid="uid://ei2w78vcxbb1" path="res://PushableCube.gd" id="1_dt3qw"]
+[ext_resource type="Script" uid="uid://ei2w78vcxbb1" path="res://Scripts/PushableCube.gd" id="1_dt3qw"]
 [ext_resource type="Texture2D" uid="uid://bhqr1giglihf2" path="res://sprites/TestCube.png" id="1_m6c8s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shgkq"]

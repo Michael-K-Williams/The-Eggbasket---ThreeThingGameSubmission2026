@@ -28,8 +28,6 @@ func try_grab(player: Node2D) -> bool:
 		return false  
 	grabbed_by = player
 	_offset_x = global_position.x - player.global_position.x
-	# the holder and the cube ignore each other while grabbed, otherwise pushing
-	# deadlocks: the yeti can't shove a rigid body and the cube only follows the yeti
 	_set_ignore(player, true)
 	return true
 

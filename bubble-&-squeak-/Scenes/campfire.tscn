@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cvh0k53mhhhon"]
+
+[ext_resource type="Script" uid="uid://bpcun434o4jxj" path="res://Scripts/campfire.gd" id="1_oufq8"]
+
+[node name="Campfire" type="RigidBody2D" unique_id=1822928585]
+script = ExtResource("1_oufq8")

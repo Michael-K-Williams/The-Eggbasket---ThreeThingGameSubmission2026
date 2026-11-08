@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bu5cl0bnig5p0"]
 
-[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_base"]
-[ext_resource type="Script" path="res://Scripts/wind_yeti.gd" id="2_script"]
-[ext_resource type="Texture2D" path="res://sprites/characters/Squeak.png" id="3_sprite"]
+[ext_resource type="PackedScene" uid="uid://bn60vt6u4pnmg" path="res://Scenes/player.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://dddus7s0vashb" path="res://Scripts/wind_yeti.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://mk70k4yi0lsu" path="res://sprites/characters/Squeak.png" id="3_sprite"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_squeak"]
 animations = [{
@@ -15,10 +15,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PlayerWind" instance=ExtResource("1_base")]
+[node name="PlayerWind" unique_id=1854324159 instance=ExtResource("1_base")]
 collision_layer = 2
 script = ExtResource("2_script")
+gust_linger = 0.5
+gust_size = Vector2(48, 220)
+gust_strength = 700.0
+gust_source_width = 0.35
 player_id = 2
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=104380371]
 sprite_frames = SubResource("SpriteFrames_squeak")

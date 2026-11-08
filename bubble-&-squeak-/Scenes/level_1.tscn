@@ -83,10 +83,6 @@ position = Vector2(90, 448)
 
 [node name="Player2" parent="." unique_id=491440395 instance=ExtResource("9_nwpk5")]
 position = Vector2(140, 448)
-gust_linger = 0.5
-gust_size = Vector2(48, 220)
-gust_strength = 700.0
-gust_source_width = 0.35
 
 [node name="Fan" parent="." unique_id=1569080169 instance=ExtResource("11_ts4pv")]
 position = Vector2(592, 473)

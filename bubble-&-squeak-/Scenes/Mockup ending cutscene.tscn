@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://bvutdhrmnergb"]
+
+[ext_resource type="Texture2D" uid="uid://ckoka2qt1pxy7" path="res://sprites/clouds.png" id="1_p3m3p"]
+[ext_resource type="Texture2D" uid="uid://cjsvib2nbabg5" path="res://sprites/back.png" id="2_m71ux"]
+[ext_resource type="Texture2D" uid="uid://dvgt67gufdlrt" path="res://sprites/middle.png" id="3_7cphe"]
+[ext_resource type="Texture2D" uid="uid://dspd0ncs226yj" path="res://sprites/front.png" id="4_s0gqq"]
+[ext_resource type="TileSet" uid="uid://twcckvq4s8p" path="res://TilesetTest.tres" id="5_rqdwn"]
+[ext_resource type="Script" uid="uid://by5loruh6lcs0" path="res://Scripts/kill_zone.gd" id="6_m0igt"]
+[ext_resource type="Script" uid="uid://c1tj2oiwcqveh" path="res://Scenes/ending_cutscene.gd" id="8_m71ux"]
+[ext_resource type="Texture2D" uid="uid://bhqr1giglihf2" path="res://sprites/TestCube.png" id="9_7cphe"]
+[ext_resource type="PackedScene" uid="uid://cxtpnqofjq78t" path="res://Scenes/player_bubble.tscn" id="9_m0igt"]
+[ext_resource type="PackedScene" uid="uid://bu5cl0bnig5p0" path="res://Scenes/player_wind.tscn" id="10_hx21x"]
+[ext_resource type="AudioStream" uid="uid://cxhhhk35o57ol" path="res://Sounds/dragon-studio-blizzard-wind-463217.mp3" id="11_aky2q"]
+
+[node name="Node2D" type="Node2D" unique_id=823770189]
+
+[node name="Parallax_clouds" type="Parallax2D" parent="." unique_id=457453499]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_clouds" unique_id=1799111607]
+z_index = -10
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_p3m3p")
+
+[node name="Parallax_back" type="Parallax2D" parent="." unique_id=812486978]
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_back" unique_id=1956161626]
+z_index = -9
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("2_m71ux")
+
+[node name="Parallax_middle" type="Parallax2D" parent="." unique_id=1938886176]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_middle" unique_id=846141269]
+z_index = -8
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("3_7cphe")
+
+[node name="Parallax_front" type="Parallax2D" parent="." unique_id=2091381781]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Parallax_front" unique_id=681022447]
+z_index = -7
+texture_filter = 1
+position = Vector2(512, 288)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("4_s0gqq")
+
+[node name="IceWater1" type="Area2D" parent="." unique_id=1106861878]
+position = Vector2(597, 577)
+scale = Vector2(2.762469, 2.5770407)
+script = ExtResource("6_m0igt")
+size = Vector2(320, 54)
+spare_bubbled = true
+tint = Color(0.55, 0.8, 1, 0.65)
+look = 2
+
+[node name="TileMap" type="TileMap" parent="." unique_id=1135068849]
+tile_set = ExtResource("5_rqdwn")
+format = 2
+layer_0/tile_data = PackedInt32Array(983040, 393216, 1, 1048576, 393216, 1, 1114112, 393216, 1, 983041, 0, 0, 1048577, 393216, 1, 1114113, 393216, 1, 983042, 0, 0, 1048578, 393216, 1, 1114114, 393216, 1, 983043, 0, 0, 1048579, 393216, 1, 1114115, 393216, 1, 983044, 0, 0, 1048580, 393216, 1, 1114116, 393216, 1, 983045, 0, 0, 1048581, 393216, 1, 1114117, 393216, 1, 0, 393216, 1, 65536, 393216, 1, 131072, 393216, 1, 196608, 393216, 1, 262144, 393216, 1, 327680, 393216, 1, 393216, 393216, 1, 458752, 393216, 1, 524288, 393216, 1, 589824, 393216, 1, 655360, 393216, 1, 720896, 393216, 1, 786432, 393216, 1, 851968, 393216, 1, 917504, 393216, 1)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=514764329 node_paths=PackedStringArray("cave_point", "ledge_point", "platform")]
+script = ExtResource("8_m71ux")
+bubble_scene = ExtResource("9_m0igt")
+squeak_scene = ExtResource("10_hx21x")
+main_menu_path = "uid://d2e6bh055l32g"
+cave_point = NodePath("../Cave point")
+ledge_point = NodePath("../Ledge point")
+platform = NodePath("../Platform")
+blizzard_sound = ExtResource("11_aky2q")
+
+[node name="Cave point" type="Marker2D" parent="." unique_id=1298220874]
+position = Vector2(108, 441)
+
+[node name="Ledge point" type="Marker2D" parent="." unique_id=112012020]
+position = Vector2(188, 441)
+
+[node name="Platform" type="Node2D" parent="." unique_id=906421976]
+position = Vector2(451, 483)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform" unique_id=1278006875]
+position = Vector2(-32, 33)
+texture = ExtResource("9_7cphe")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Platform" unique_id=1098691973]
+position = Vector2(32, 33)
+texture = ExtResource("9_7cphe")

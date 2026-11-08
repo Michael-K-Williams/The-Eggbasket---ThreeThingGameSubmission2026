@@ -8,8 +8,9 @@
 # the eye on ControlsOverlay to see it.
 extends Control
 
-const FIRST_LEVEL := "res://Scenes/level_1.tscn"
-
+#const FIRST_LEVEL := "res://Scenes/level_1.tscn"
+const FIRST_LEVEL := "res://Scenes/cave_1.tscn"
+#const FIRST_LEVEL := "res://Scenes/Mockup ending cutscene.tscn"
 var _clouds: Control
 var _bubbles: Control
 var _title: Control
