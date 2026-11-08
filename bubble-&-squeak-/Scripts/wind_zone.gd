@@ -58,6 +58,7 @@ void fragment() {
 @export_range(0.0, 1.0) var source_width: float = 1.0   # see the shader, 1.0 for fans
 var exclude: Node = null   # never blows this one (the wind yeti, since its gust starts inside it)
 
+
 @export var DIRECTION := Vector2.LEFT
  
 func _ready() -> void:

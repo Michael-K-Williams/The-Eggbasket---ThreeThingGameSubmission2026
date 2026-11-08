@@ -89,10 +89,6 @@ position = Vector2(90, 448)
 
 [node name="Player2" parent="." unique_id=1168582674 instance=ExtResource("10_owuw0")]
 position = Vector2(140, 448)
-gust_linger = 0.5
-gust_size = Vector2(48, 220)
-gust_strength = 700.0
-gust_source_width = 0.35
 
 [node name="LevelTitle" parent="." unique_id=1668866556 instance=ExtResource("12_g5bgm")]
 layer = 60
@@ -127,7 +123,7 @@ position = Vector2(924, 448)
 physics_material_override = SubResource("PhysicsMaterial_shgkq")
 
 [node name="FanSwitch" parent="." unique_id=1884345283 instance=ExtResource("20_lg3ys")]
-position = Vector2(1040, 475)
+position = Vector2(1039, 475)
 size = Vector2(64, 10)
 targets = Array[NodePath]([NodePath("../Headwind")])
 counts_players = false

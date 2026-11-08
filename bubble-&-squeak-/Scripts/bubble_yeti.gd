@@ -26,7 +26,9 @@ func _use_ability() -> void:
 	if is_instance_valid(_bubble):
 		_bubble.queue_free()
 	get_parent().add_child(bubble)
-	bubble.global_position = global_position + Vector2(_facing * spot, 0.0)
+	var mouth := global_position + Vector2(_facing * _body_extents().x, 0.0)
+	var rest := global_position + Vector2(_facing * spot, 0.0)
+	bubble.launch(mouth, rest)
 	_bubble = bubble
 
 

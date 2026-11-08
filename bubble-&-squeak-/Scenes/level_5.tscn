@@ -6,27 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://dspd0ncs226yj" path="res://sprites/front.png" id="4_fvy3r"]
 [ext_resource type="Script" uid="uid://e2ov6x7gxtl1" path="res://Scripts/coop_camera.gd" id="5_f1g4w"]
 [ext_resource type="PackedScene" uid="uid://dk8vfds7hb3ry" path="res://Scenes/Arrival Cave.tscn" id="6_kao8l"]
-[ext_resource type="Script" uid="uid://dnq5fnhmdenjq" path="res://Scripts/cave_exit.gd" id="7_tvn4p"]
 [ext_resource type="PackedScene" uid="uid://cxtpnqofjq78t" path="res://Scenes/player_bubble.tscn" id="8_dfxrv"]
-[ext_resource type="Script" uid="uid://bv44cahbt8pug" path="res://Scripts/bubble_yeti.gd" id="9_i0r63"]
 [ext_resource type="PackedScene" uid="uid://bu5cl0bnig5p0" path="res://Scenes/player_wind.tscn" id="10_hhhh0"]
-[ext_resource type="Script" uid="uid://dddus7s0vashb" path="res://Scripts/wind_yeti.gd" id="11_yjqi7"]
 [ext_resource type="PackedScene" uid="uid://rp0iyfkh120q" path="res://Scenes/level_title.tscn" id="12_yioeb"]
-[ext_resource type="Script" uid="uid://l5lmvlvy045h" path="res://Scripts/level_title.gd" id="13_ekddn"]
 [ext_resource type="PackedScene" uid="uid://disxr4obqq8jl" path="res://Scenes/controls_legend.tscn" id="14_5ee3x"]
-[ext_resource type="Script" uid="uid://q5oat4dxj8kr" path="res://Scripts/controls_legend.gd" id="15_meqjb"]
 [ext_resource type="PackedScene" uid="uid://bp5kw5pur8vfw" path="res://Scenes/pressure_plate.tscn" id="16_8q1yh"]
-[ext_resource type="Script" uid="uid://vtfwvgbbahtk" path="res://Scripts/pressure_plate.gd" id="17_e4dxf"]
 [ext_resource type="PackedScene" uid="uid://dhj2frbe010ae" path="res://Scenes/cube.tscn" id="18_7fno0"]
-[ext_resource type="Script" uid="uid://ei2w78vcxbb1" path="res://Scripts/PushableCube.gd" id="19_5tpqq"]
 [ext_resource type="PackedScene" uid="uid://drh8ml2w32e2l" path="res://Scenes/door.tscn" id="20_2olea"]
-[ext_resource type="Script" uid="uid://d2tgihp8tlw51" path="res://Scripts/door.gd" id="21_ce48y"]
 [ext_resource type="Script" uid="uid://chka4405ccw7" path="res://Scripts/respawn_point.gd" id="22_6q224"]
 [ext_resource type="Script" uid="uid://by5loruh6lcs0" path="res://Scripts/kill_zone.gd" id="23_4e2p8"]
 [ext_resource type="PackedScene" uid="uid://3tjgk56vci1" path="res://Scenes/exit_cave.tscn" id="24_rwm52"]
-[ext_resource type="Script" uid="uid://dlfkeyamauiys" path="res://Scripts/cave_entrance.gd" id="25_gisxd"]
 [ext_resource type="PackedScene" uid="uid://cnqxkcoi6a107" path="res://Scenes/hint.tscn" id="26_4lalx"]
-[ext_resource type="Script" uid="uid://b2qfnck1lkk43" path="res://Scripts/hint.gd" id="27_qybax"]
 [ext_resource type="TileSet" uid="uid://twcckvq4s8p" path="res://TilesetTest.tres" id="28_3bkx6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shgkq"]
@@ -90,63 +80,44 @@ limit_right = 2048
 limit_bottom = 576
 script = ExtResource("5_f1g4w")
 
-[node name="ArrivalCave" type="Node2D" parent="." unique_id=563540888 instance=ExtResource("6_kao8l")]
-z_index = -1
+[node name="ArrivalCave" parent="." unique_id=563540888 instance=ExtResource("6_kao8l")]
 position = Vector2(80, 440)
-script = ExtResource("7_tvn4p")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1570092012 instance=ExtResource("8_dfxrv")]
+[node name="Player" parent="." unique_id=1570092012 instance=ExtResource("8_dfxrv")]
 position = Vector2(90, 448)
-disable_mode = 2
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("9_i0r63")
 
-[node name="Player2" type="CharacterBody2D" parent="." unique_id=868722335 instance=ExtResource("10_hhhh0")]
+[node name="Player2" parent="." unique_id=868722335 instance=ExtResource("10_hhhh0")]
 position = Vector2(140, 448)
-disable_mode = 2
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("11_yjqi7")
-player_id = 2
 
-[node name="LevelTitle" type="CanvasLayer" parent="." unique_id=1668866556 instance=ExtResource("12_yioeb")]
-script = ExtResource("13_ekddn")
+[node name="LevelTitle" parent="." unique_id=1668866556 instance=ExtResource("12_yioeb")]
+layer = 60
 number = "Level 5"
 title = "Bubble Trouble"
 
-[node name="ControlsLegend" type="CanvasLayer" parent="." unique_id=1315592948 instance=ExtResource("14_5ee3x")]
-script = ExtResource("15_meqjb")
+[node name="ControlsLegend" parent="." unique_id=1315592948 instance=ExtResource("14_5ee3x")]
 show_seconds = 5.0
 
-[node name="SwitchB" type="Area2D" parent="." unique_id=815552509 instance=ExtResource("16_8q1yh")]
+[node name="SwitchB" parent="." unique_id=815552509 instance=ExtResource("16_8q1yh")]
 position = Vector2(240, 475)
-script = ExtResource("17_e4dxf")
 targets = Array[NodePath]([NodePath("../Gate")])
 
-[node name="Cube" type="RigidBody2D" parent="." unique_id=977927514 instance=ExtResource("18_7fno0")]
+[node name="Cube" parent="." unique_id=977927514 instance=ExtResource("18_7fno0")]
 position = Vector2(368, 448)
-collision_layer = 2
-collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_shgkq")
-script = ExtResource("19_5tpqq")
 
-[node name="SwitchA" type="Area2D" parent="." unique_id=47505529 instance=ExtResource("16_8q1yh")]
+[node name="SwitchA" parent="." unique_id=47505529 instance=ExtResource("16_8q1yh")]
 position = Vector2(464, 475)
-script = ExtResource("17_e4dxf")
 targets = Array[NodePath]([NodePath("../Gate")])
 
-[node name="Gate" type="StaticBody2D" parent="." unique_id=1750745153 instance=ExtResource("20_2olea")]
+[node name="Gate" parent="." unique_id=1750745153 instance=ExtResource("20_2olea")]
 z_index = -1
 position = Vector2(528, 256)
-script = ExtResource("21_ce48y")
 size = Vector2(32, 448)
 plates_needed = 2
 open_offset = Vector2(0, 448)
 
-[node name="GateLatch" type="Area2D" parent="." unique_id=1306612060 instance=ExtResource("16_8q1yh")]
+[node name="GateLatch" parent="." unique_id=1306612060 instance=ExtResource("16_8q1yh")]
 position = Vector2(624, 475)
-script = ExtResource("17_e4dxf")
 targets = Array[NodePath]([NodePath("../Gate")])
 stays_pressed = true
 
@@ -161,31 +132,26 @@ size = Vector2(512, 64)
 tint = Color(0.85, 0.15, 0.15, 0.55)
 look = 1
 
-[node name="ExitCave" type="Area2D" parent="." unique_id=1124004171 instance=ExtResource("24_rwm52")]
-z_index = -1
+[node name="ExitCave" parent="." unique_id=1124004171 instance=ExtResource("24_rwm52")]
 position = Vector2(1936, 440)
-script = ExtResource("25_gisxd")
-next_level_path = "res://Scenes/level_6.tscn"
+next_level_path = "uid://bvutdhrmnergb"
 
-[node name="GateHint" type="Area2D" parent="." unique_id=1584470207 instance=ExtResource("26_4lalx")]
+[node name="GateHint" parent="." unique_id=1584470207 instance=ExtResource("26_4lalx")]
 position = Vector2(340, 440)
-script = ExtResource("27_qybax")
 text = "The gate needs both switches held at once.
 One of you, and something else heavy."
 trigger_size = Vector2(360, 120)
 box_offset = Vector2(0, -150)
 
-[node name="LatchHint" type="Area2D" parent="." unique_id=304766267 instance=ExtResource("26_4lalx")]
+[node name="LatchHint" parent="." unique_id=304766267 instance=ExtResource("26_4lalx")]
 position = Vector2(624, 440)
-script = ExtResource("27_qybax")
 text = "Keeps the gate open."
 trigger_size = Vector2(140, 120)
 box_offset = Vector2(0, -110)
 font_size = 14
 
-[node name="PillarHint" type="Area2D" parent="." unique_id=814074540 instance=ExtResource("26_4lalx")]
+[node name="PillarHint" parent="." unique_id=814074540 instance=ExtResource("26_4lalx")]
 position = Vector2(1040, 440)
-script = ExtResource("27_qybax")
 text = "The pillars are too tall to jump onto.
 Blow a bubble over the spikes and bounce."
 trigger_size = Vector2(200, 120)

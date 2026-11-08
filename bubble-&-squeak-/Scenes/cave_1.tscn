@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://d06kroitiejto"]
 
-[ext_resource type="TileSet" uid="uid://twcckvq4s8p" path="res://TilesetTest.tres" id="1_i27f2"]
 [ext_resource type="Script" uid="uid://cojgjlabs4lno" path="res://Scripts/intro_cutscene.gd" id="2_k1554"]
 [ext_resource type="PackedScene" uid="uid://bu5cl0bnig5p0" path="res://Scenes/player_wind.tscn" id="2_wind"]
 [ext_resource type="PackedScene" uid="uid://cxtpnqofjq78t" path="res://Scenes/player_bubble.tscn" id="3_jgtpf"]
@@ -12,13 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://dvgt67gufdlrt" path="res://sprites/middle.png" id="9_5pysg"]
 [ext_resource type="Script" uid="uid://by5loruh6lcs0" path="res://Scripts/kill_zone.gd" id="9_kill"]
 [ext_resource type="Texture2D" uid="uid://dspd0ncs226yj" path="res://sprites/front.png" id="10_bpe0a"]
+[ext_resource type="TileSet" uid="uid://cp31ab2bu4mw2" path="res://NewTileSet.tres" id="13_bpe0a"]
 
 [node name="Cave_1" type="Node2D" unique_id=1694078259]
 
-[node name="TileMap" type="TileMap" parent="." unique_id=1065994085]
-tile_set = ExtResource("1_i27f2")
+[node name="TileMap2" type="TileMap" parent="." unique_id=1724718374]
+tile_set = ExtResource("13_bpe0a")
 format = 2
-layer_0/tile_data = PackedInt32Array(589809, 0, 0, 589810, 0, 0, 589811, 0, 0, 589812, 0, 0, 589813, 0, 0, 589814, 0, 0, 589815, 0, 0, 589816, 0, 0, 589817, 0, 0, 589818, 0, 0, 589819, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 589808, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 589807, 0, 0, 589806, 0, 0, 589805, 0, 0, 589804, 0, 0, 589803, 0, 0, 589802, 0, 0, 589801, 0, 0, 589800, 0, 0, 589799, 0, 0, 589798, 0, 0, 589797, 0, 0)
+layer_0/tile_data = PackedInt32Array(327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 327677, 0, 0, 327676, 0, 0, 327675, 0, 0, 327674, 0, 0, 327673, 0, 0, 327672, 0, 0, 327671, 0, 0, 327670, 0, 0, 327669, 0, 0, 327668, 0, 0, 327667, 0, 0, 327666, 0, 0)
 
 [node name="Node2D" type="Node2D" parent="." unique_id=451422637 node_paths=PackedStringArray("campfire", "exit_point")]
 script = ExtResource("2_k1554")

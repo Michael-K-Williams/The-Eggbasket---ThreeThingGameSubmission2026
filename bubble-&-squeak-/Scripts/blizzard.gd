@@ -93,7 +93,7 @@ void fragment() {
 	set(value):
 		intensity = clampf(value, 0.0, 1.0)
 		_apply()
-@export var wind_direction := Vector2(-1.0, 0.3)
+@export var wind_direction := Vector2(1.0, 0.3) #-1.0
 @export var snow_color := Color(0.92, 0.96, 1.0)
 @export var whiteout: float = 0.45
 

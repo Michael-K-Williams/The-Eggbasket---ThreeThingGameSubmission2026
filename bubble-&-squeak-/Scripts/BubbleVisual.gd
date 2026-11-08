@@ -7,20 +7,21 @@ extends Node2D
 		queue_redraw()
 @export var fill_color := Color(0.6, 0.85, 1.0, 0.22)
 @export var edge_color := Color(0.85, 0.95, 1.0, 0.7)
-@export var max_shake: float = 4.0   # pixels it jitters by when it's about to pop
+@export var max_shake: float = 4.0  
+var bob_offset := Vector2.ZERO
 
-# 0 = calm, 1 = about to pop. Set by the yeti inside while they try to get out.
+
 var shake: float = 0.0:
 	set(value):
 		shake = value
-		if shake <= 0.0:
-			position = Vector2.ZERO
 		queue_redraw()
 
 
 func _process(_delta: float) -> void:
+	var jitter := Vector2.ZERO
 	if shake > 0.0:
-		position = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * max_shake * shake
+		jitter = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * max_shake * shake
+	position = bob_offset + jitter
 
 
 func _draw() -> void:
